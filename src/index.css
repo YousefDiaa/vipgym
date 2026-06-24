@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Tajawal", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cairo", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-gold-50: #fbf8eb;
+  --color-gold-100: #f5edcb;
+  --color-gold-200: #eadb96;
+  --color-gold-300: #dbc057;
+  --color-gold-400: #cca52c;
+  --color-gold-500: #b58c21;
+  --color-gold-600: #936b17;
+  --color-gold-700: #714e13;
+  --color-gold-800: #573c12;
+  --color-gold-900: #473112;
+  --color-gold-950: #291a08;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+    font-family: var(--font-sans);
+    background-color: #0b0c10;
+    color: #e5e7eb;
+  }
+}
+
+/* Custom classes for extra glow and polish */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFE07D 0%, #D4AF37 50%, #9F7E1D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  border-color: #D4AF37;
+}
+
+.glass-card {
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card-gold {
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2c35;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b58c21;
+}
