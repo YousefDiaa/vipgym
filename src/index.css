@@ -1,22 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Tajawal", "Cairo", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Cairo", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Tajawal", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Cairo", "Tajawal", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-gold-50: #fbf8eb;
-  --color-gold-100: #f5edcb;
-  --color-gold-200: #eadb96;
-  --color-gold-300: #dbc057;
-  --color-gold-400: #cca52c;
-  --color-gold-500: #b58c21;
-  --color-gold-600: #936b17;
-  --color-gold-700: #714e13;
-  --color-gold-800: #573c12;
-  --color-gold-900: #473112;
-  --color-gold-950: #291a08;
+  --color-surface-base: #101415;
+  --color-surface-dim: #101415;
+  --color-surface-bright: #363a3b;
+  --color-surface-lowest: #0b0f10;
+  --color-surface-low: #191c1e;
+  --color-surface-container: #1d2022;
+  --color-surface-high: #272a2c;
+  --color-surface-highest: #323537;
+  
+  --color-primary: #bec6e0;
+  --color-primary-container: #0f172a;
+  --color-secondary: #a4d64c;
+  --color-secondary-container: #719e13;
+  --color-tertiary: #b9c7e0;
+  
+  --color-neon: #D9F99D;
+  --color-nile: #1E293B;
+  --color-status-error: #EF4444;
 }
 
 @layer base {
@@ -24,37 +31,46 @@
     scroll-behavior: smooth;
     direction: rtl;
     font-family: var(--font-sans);
-    background-color: #0b0c10;
-    color: #e5e7eb;
+    background-color: #101415;
+    color: #e0e3e5;
   }
 }
 
-/* Custom classes for extra glow and polish */
-.gold-gradient-text {
-  background: linear-gradient(135deg, #FFE07D 0%, #D4AF37 50%, #9F7E1D 100%);
+/* Custom classes for extra glow and polish according to VIP GYM Elite specification */
+.neon-gradient-text {
+  background: linear-gradient(135deg, #E2F9B8 0%, #a4d64c 50%, #719e13 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-glow {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+.neon-glow {
+  box-shadow: 0 0 15px rgba(164, 214, 76, 0.15);
 }
 
-.gold-glow-hover:hover {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-  border-color: #D4AF37;
+.neon-glow-hover:hover {
+  box-shadow: 0 0 25px rgba(164, 214, 76, 0.35);
+  border-color: #a4d64c;
 }
 
 .glass-card {
-  background: rgba(18, 18, 18, 0.75);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.glass-card-gold {
-  background: rgba(18, 18, 18, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+.glass-card-neon {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(164, 214, 76, 0.25);
+}
+
+/* Power Slant: 6-degree dynamic cut applied to evoke momentum */
+.power-slant {
+  clip-path: polygon(0 0, 100% 2.5%, 100% 100%, 0 97.5%);
+}
+
+.power-slant-reverse {
+  clip-path: polygon(0 2.5%, 100% 0, 100% 97.5%, 0 100%);
 }
 
 /* Scrollbar styling */
@@ -62,12 +78,12 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0c10;
+  background: #101415;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2c35;
+  background: #1E293B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b58c21;
+  background: #a4d64c;
 }

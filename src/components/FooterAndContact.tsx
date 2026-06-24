@@ -6,18 +6,18 @@ export default function FooterAndContact() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-stone-950 border-t border-stone-900 pt-20 pb-8 relative overflow-hidden">
+    <footer id="contact" className="bg-surface-lowest border-t border-stone-900 pt-20 pb-8 relative overflow-hidden">
       {/* Decorative Glow */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold-600/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 items-start mb-16">
           {/* Main info & Contacts */}
           <div className="lg:col-span-5 space-y-8 text-right">
             <div>
-              <span className="text-xs uppercase tracking-widest text-gold-400 font-bold font-mono">تواصل معنا الآن</span>
+              <span className="text-xs uppercase tracking-widest text-secondary font-bold font-mono">تواصل معنا الآن</span>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-white mt-2 mb-4">
-                بيانات الاتصال <span className="gold-gradient-text">والموقع الجغرافي</span>
+                بيانات الاتصال <span className="neon-gradient-text uppercase">والموقع الجغرافي</span>
               </h2>
               <p className="text-stone-300 text-sm sm:text-base font-sans leading-relaxed">
                 جاهزون دائمًا لاستقبال استفساراتكم والرد عليها على مدار الساعة. تواصل معنا بأي من الوسائل المتاحة أو تفضل بزيارتنا في مقر الجيم.
@@ -26,14 +26,14 @@ export default function FooterAndContact() {
 
             {/* Quick click numbers */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-stone-900/60 p-4 rounded-2xl border border-stone-800 hover:border-gold-500/20 transition-all">
+              <div className="bg-[#191c1e] p-4 rounded border border-stone-800 hover:border-secondary/20 transition-all">
                 <span className="block text-xs text-stone-400 mb-1.5 font-bold">الهواتف الخلوية السريعة:</span>
                 <div className="space-y-1">
                   {contactInfo.phones.map((phone) => (
                     <a
                       key={phone}
                       href={`tel:${phone}`}
-                      className="flex items-center gap-2 text-gold-400 hover:text-white font-mono font-bold text-sm transition-colors py-1 hover:underline"
+                      className="flex items-center gap-2 text-secondary hover:text-white font-mono font-bold text-sm transition-colors py-1 hover:underline"
                     >
                       <Phone className="w-3.5 h-3.5 shrink-0" />
                       <span>{phone}</span>
@@ -42,12 +42,12 @@ export default function FooterAndContact() {
                 </div>
               </div>
 
-              <div className="bg-stone-900/60 p-4 rounded-2xl border border-stone-800 hover:border-gold-500/20 transition-all flex flex-col justify-between">
+              <div className="bg-[#191c1e] p-4 rounded border border-stone-800 hover:border-secondary/20 transition-all flex flex-col justify-between">
                 <div>
                   <span className="block text-xs text-stone-400 mb-1.5 font-bold">الخط الأرضي:</span>
                   <a
                     href={`tel:${contactInfo.landline}`}
-                    className="flex items-center gap-2 text-stone-200 hover:text-gold-400 font-mono font-semibold text-sm transition-colors"
+                    className="flex items-center gap-2 text-stone-200 hover:text-secondary font-mono font-semibold text-sm transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 shrink-0" />
                     <span>{contactInfo.landline}</span>
@@ -69,9 +69,9 @@ export default function FooterAndContact() {
             </div>
 
             {/* Social Icons handle */}
-            <div className="flex items-center gap-4 bg-stone-900/30 p-4 rounded-xl border border-stone-800">
+            <div className="flex items-center gap-4 bg-[#191c1e] p-4 rounded border border-stone-800">
               <span className="text-sm font-bold text-stone-300">تابع حساباتنا الموحدة:</span>
-              <span className="text-xs font-mono font-black text-gold-400 bg-gold-400/10 px-2 py-0.5 rounded">
+              <span className="text-xs font-mono font-black text-secondary bg-secondary/10 px-2 py-0.5 rounded">
                 {contactInfo.socialHandle}
               </span>
               <div className="flex items-center gap-2 mr-auto">
@@ -79,7 +79,7 @@ export default function FooterAndContact() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-stone-800 hover:bg-gold-500 hover:text-black rounded-lg transition-all text-stone-300"
+                  className="p-2 bg-stone-800 hover:bg-secondary hover:text-black rounded transition-all text-stone-300 cursor-pointer"
                   aria-label="Facebook Profile"
                 >
                   <Facebook className="w-4 h-4" />
@@ -88,7 +88,7 @@ export default function FooterAndContact() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-stone-800 hover:bg-gold-500 hover:text-black rounded-lg transition-all text-stone-300"
+                  className="p-2 bg-stone-800 hover:bg-secondary hover:text-black rounded transition-all text-stone-300 cursor-pointer"
                   aria-label="Instagram Profile"
                 >
                   <Instagram className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function FooterAndContact() {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-stone-800 hover:bg-gold-500 hover:text-black rounded-lg transition-all text-stone-300"
+                  className="p-2 bg-stone-800 hover:bg-secondary hover:text-black rounded transition-all text-stone-300 cursor-pointer"
                   aria-label="Youtube Channel"
                 >
                   <Youtube className="w-4 h-4" />
@@ -108,10 +108,10 @@ export default function FooterAndContact() {
 
           {/* Location details & Map Panel */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="glass-card p-6 sm:p-8 rounded-3xl border border-stone-800">
+            <div className="glass-card p-6 sm:p-8 rounded-xl border border-stone-800">
               <h3 className="text-xl font-display font-black text-white mb-4 flex items-center gap-2 justify-end">
                 <span>المقر الرئيسي والعنوان</span>
-                <MapPin className="text-gold-400 w-5 h-5" />
+                <MapPin className="text-secondary w-5 h-5" />
               </h3>
 
               <div className="text-right space-y-4 mb-6">
@@ -126,9 +126,9 @@ export default function FooterAndContact() {
                     {contactInfo.landmarks.map((mark, idx) => (
                       <span
                         key={idx}
-                        className="bg-stone-900 border border-stone-800 px-3 py-1.5 rounded-lg text-xs text-stone-300 font-sans font-medium flex items-center gap-1.5"
+                        className="bg-[#191c1e] border border-stone-800 px-3 py-1.5 rounded text-xs text-stone-300 font-sans font-medium flex items-center gap-1.5"
                       >
-                        <Compass className="w-3 h-3 text-gold-400" />
+                        <Compass className="w-3 h-3 text-secondary" />
                         {mark}
                       </span>
                     ))}
@@ -137,7 +137,7 @@ export default function FooterAndContact() {
               </div>
 
               {/* Map Placeholder Graphic - High-End UI with directions trigger */}
-              <div className="relative w-full h-56 bg-stone-900 rounded-2xl overflow-hidden border border-stone-800 group">
+              <div className="relative w-full h-56 bg-stone-900 rounded-xl overflow-hidden border border-stone-800 group">
                 <div className="absolute inset-0 bg-stone-950/20 z-10" />
                 <img
                   src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1200"
@@ -148,8 +148,8 @@ export default function FooterAndContact() {
 
                 {/* Custom modern styled overlay representation of map */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 z-20 text-center">
-                  <div className="w-12 h-12 bg-gold-400/20 border border-gold-500 rounded-full flex items-center justify-center mb-3 gold-glow">
-                    <MapPin className="w-6 h-6 text-gold-400 animate-bounce" />
+                  <div className="w-12 h-12 bg-secondary/20 border border-secondary rounded-full flex items-center justify-center mb-3 neon-glow">
+                    <MapPin className="w-6 h-6 text-secondary animate-bounce" />
                   </div>
                   <span className="block text-white font-display font-black text-sm mb-1">خريطة الموقع الجغرافي المباشر</span>
                   <span className="block text-stone-400 text-xs mb-4">اضغط على الزر أدناه للانتقال الفوري إلى خرائط جوجل</span>
@@ -157,7 +157,7 @@ export default function FooterAndContact() {
                     href="https://maps.google.com/?q=نادي+المنيا+الرياضي+كورنيش+النيل"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gold-500 hover:bg-gold-400 text-black font-bold text-xs py-2 px-5 rounded-lg inline-flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
+                    className="bg-secondary hover:bg-[#86bf30] text-black font-extrabold text-xs py-2 px-5 rounded inline-flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
                   >
                     <span>فتح الموقع في خرائط Google</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -167,8 +167,8 @@ export default function FooterAndContact() {
 
               {/* QR Coordinate and Social codes */}
               <div className="grid sm:grid-cols-2 gap-4 mt-6 pt-6 border-t border-stone-800/80">
-                <div className="bg-stone-950/60 p-4 rounded-xl border border-stone-850 text-right flex items-center gap-4">
-                  <div className="w-14 h-14 bg-white p-1 rounded-lg shrink-0 flex items-center justify-center">
+                <div className="bg-[#191c1e] p-4 rounded border border-stone-850 text-right flex items-center gap-4">
+                  <div className="w-14 h-14 bg-white p-1 rounded shrink-0 flex items-center justify-center">
                     {/* Generative representation of QR Code */}
                     <div className="w-full h-full grid grid-cols-4 gap-0.5 bg-stone-950 p-0.5">
                       {[...Array(16)].map((_, i) => (
@@ -187,8 +187,8 @@ export default function FooterAndContact() {
                   </div>
                 </div>
 
-                <div className="bg-stone-950/60 p-4 rounded-xl border border-stone-850 text-right flex items-center gap-4">
-                  <div className="w-14 h-14 bg-white p-1 rounded-lg shrink-0 flex items-center justify-center">
+                <div className="bg-[#191c1e] p-4 rounded border border-stone-850 text-right flex items-center gap-4">
+                  <div className="w-14 h-14 bg-white p-1 rounded shrink-0 flex items-center justify-center">
                     {/* Generative representation of Social QR */}
                     <div className="w-full h-full grid grid-cols-4 gap-0.5 bg-stone-950 p-0.5">
                       {[...Array(16)].map((_, i) => (
@@ -218,7 +218,7 @@ export default function FooterAndContact() {
           </div>
           <div className="flex items-center gap-1">
             <span>تطوير وإدارة النادي الرياضي</span>
-            <Star className="w-3 h-3 text-gold-500 fill-gold-500" />
+            <Star className="w-3 h-3 text-secondary fill-secondary" />
             <span>نادي المنيا الرياضي</span>
           </div>
         </div>

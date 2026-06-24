@@ -12,13 +12,13 @@ export default function SubscriptionCards() {
   const getTierIcon = (iconName: string) => {
     switch (iconName) {
       case "Crown":
-        return <Crown className="w-6 h-6 text-gold-400" />;
+        return <Crown className="w-6 h-6 text-secondary" />;
       case "Dumbbell":
         return <Dumbbell className="w-6 h-6 text-stone-300" />;
       case "Zap":
-        return <Zap className="w-6 h-6 text-cyan-400" />;
+        return <Zap className="w-6 h-6 text-secondary" />;
       default:
-        return <Dumbbell className="w-6 h-6 text-gold-400" />;
+        return <Dumbbell className="w-6 h-6 text-secondary" />;
     }
   };
 
@@ -52,15 +52,15 @@ export default function SubscriptionCards() {
   };
 
   return (
-    <section id="pricing" className="py-20 bg-stone-950 relative overflow-hidden">
+    <section id="pricing" className="py-20 bg-surface-base relative overflow-hidden">
       {/* Decorative Glow */}
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-600/5 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-stone-900 rounded-full blur-3xl z-0" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-nile/20 rounded-full blur-3xl z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
-            باقات واشتراكات <span className="gold-gradient-text">VIP GYM</span>
+            باقات واشتراكات <span className="neon-gradient-text uppercase">VIP GYM ELITE</span>
           </h2>
           <p className="text-stone-300 text-base sm:text-lg font-sans">
             اختر باقة الاشتراك المناسبة لإمكانياتك وأهدافك البدنية. نضمن لك أعلى جودة تدريب وأحدث الأجهزة مع ميزات مجانية حصرية.
@@ -75,15 +75,15 @@ export default function SubscriptionCards() {
               <div
                 key={tier.id}
                 onClick={() => setActiveTab(tier.id)}
-                className={`cursor-pointer rounded-3xl p-6 transition-all duration-300 relative flex flex-col justify-between h-full ${
+                className={`cursor-pointer rounded-xl p-6 transition-all duration-300 relative flex flex-col justify-between h-full ${
                   activeTab === tier.id
-                    ? "glass-card-gold border-gold-400 scale-[1.02] gold-glow"
+                    ? "glass-card-neon border-secondary scale-[1.02] neon-glow"
                     : "glass-card hover:border-stone-700 hover:scale-[1.01]"
                 }`}
               >
                 {/* Popular Badge */}
                 {isPrivate && (
-                  <span className="absolute -top-3.5 left-6 bg-gradient-to-r from-gold-400 to-gold-600 text-black text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <span className="absolute -top-3.5 left-6 bg-secondary text-black text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1 neon-glow">
                     <Crown className="w-3.5 h-3.5 fill-black" />
                     الباقة الأكثر طلباً والمدعومة بالكامل
                   </span>
@@ -93,7 +93,7 @@ export default function SubscriptionCards() {
                   {/* Header Tier */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className={`p-3 rounded-xl ${isPrivate ? "bg-gold-400/20 text-gold-400" : "bg-stone-800 text-stone-300"}`}>
+                      <div className={`p-3 rounded ${isPrivate ? "bg-secondary/20 text-secondary" : "bg-[#191c1e] text-stone-300"}`}>
                         {getTierIcon(tier.icon)}
                       </div>
                       <h3 className="text-lg sm:text-xl font-display font-black text-white">{tier.name}</h3>
@@ -103,7 +103,7 @@ export default function SubscriptionCards() {
                   {/* Period & Target info */}
                   <div className="mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-display font-black text-gold-400">{tier.period}</span>
+                      <span className="text-3xl font-display font-black text-secondary">{tier.period}</span>
                       <span className="text-stone-400 text-sm">مدة الصلاحية</span>
                     </div>
                     <p className="text-stone-300 text-sm mt-2 leading-relaxed font-sans">{tier.target}</p>
@@ -115,7 +115,7 @@ export default function SubscriptionCards() {
                     <ul className="space-y-2.5">
                       {tier.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-stone-300 text-sm">
-                          <Check className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
                           <span>{benefit}</span>
                         </li>
                       ))}
@@ -125,7 +125,7 @@ export default function SubscriptionCards() {
                   {/* Freebies included */}
                   <div className="space-y-3 mb-6 border-t border-stone-800/80 pt-5">
                     <h4 className="text-sm font-bold text-stone-200 flex items-center gap-1.5">
-                      <Gift className="w-4 h-4 text-gold-400" />
+                      <Gift className="w-4 h-4 text-secondary" />
                       الخدمات والمزايا المضافة مجاناً:
                     </h4>
                     <div className="space-y-2">
@@ -138,8 +138,8 @@ export default function SubscriptionCards() {
                             className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                               freebie.isFree
                                 ? freebie.isPrivateOnly
-                                  ? "bg-purple-500/10 text-purple-300 border border-purple-500/20"
-                                  : "bg-green-500/10 text-green-400 border border-green-500/20"
+                                  ? "bg-[#D9F99D]/20 text-[#D9F99D] border border-[#D9F99D]/30"
+                                  : "bg-secondary/10 text-secondary border border-secondary/20"
                                 : "bg-stone-900 text-stone-600"
                             }`}
                           >
@@ -153,7 +153,7 @@ export default function SubscriptionCards() {
 
                 {/* Discounts */}
                 <div className="border-t border-stone-800/80 pt-5 mt-auto">
-                  <div className="bg-stone-900/40 p-3 rounded-xl border border-stone-800 text-xs text-gold-300 font-sans">
+                  <div className="bg-[#191c1e] p-3 rounded border border-stone-800 text-xs text-secondary font-sans">
                     <strong>الخصومات الإضافية:</strong> {tier.discount}
                   </div>
                 </div>
@@ -163,10 +163,10 @@ export default function SubscriptionCards() {
         </div>
 
         {/* Dynamic Fitness Assistant / Recommend Tool */}
-        <div className="glass-card rounded-3xl border border-gold-500/10 p-6 sm:p-8 max-w-4xl mx-auto gold-glow">
+        <div className="glass-card rounded-xl border border-secondary/10 p-6 sm:p-8 max-w-4xl mx-auto neon-glow">
           <div className="flex flex-col md:flex-row gap-6 items-center">
-            <div className="w-16 h-16 bg-gold-400/10 rounded-2xl flex items-center justify-center shrink-0">
-              <HelpCircle className="w-8 h-8 text-gold-400" />
+            <div className="w-16 h-16 bg-secondary/10 rounded flex items-center justify-center shrink-0">
+              <HelpCircle className="w-8 h-8 text-secondary" />
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-display font-black text-white mb-2">مساعد اختيار الباقة الذكي</h3>
@@ -182,7 +182,7 @@ export default function SubscriptionCards() {
               <select
                 value={selectedGoal}
                 onChange={(e) => setSelectedGoal(e.target.value)}
-                className="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm text-stone-300 focus:outline-none focus:border-gold-400"
+                className="w-full bg-[#191c1e] border border-stone-700 rounded px-4 py-3 text-sm text-stone-300 focus:outline-none focus:border-secondary font-sans"
               >
                 <option value="">-- اختر هدفك البدني --</option>
                 <option value="weight-loss-fast">تخسيس وحرق دهون سريع (وزن زائد)</option>
@@ -201,10 +201,10 @@ export default function SubscriptionCards() {
                     key={day}
                     type="button"
                     onClick={() => setSelectedDays(day)}
-                    className={`flex-1 py-2.5 rounded-xl text-sm font-black transition-all ${
+                    className={`flex-1 py-2.5 rounded text-sm font-bold transition-all cursor-pointer ${
                       selectedDays === day
-                        ? "bg-gold-500 text-black gold-glow"
-                        : "bg-stone-900 text-stone-300 border border-stone-800 hover:border-stone-700"
+                        ? "bg-secondary text-black neon-glow"
+                        : "bg-[#191c1e] text-stone-300 border border-stone-800 hover:border-stone-700"
                     }`}
                   >
                     {day} أيام
@@ -217,7 +217,7 @@ export default function SubscriptionCards() {
           <div className="mt-6 flex flex-wrap gap-4 items-center justify-between border-t border-stone-800 pt-6">
             <button
               onClick={handleRecommendPackage}
-              className="bg-stone-900 border border-gold-400/50 hover:border-gold-400 text-gold-400 px-6 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-2"
+              className="bg-[#191c1e] border border-secondary/50 hover:border-secondary text-secondary px-6 py-3 rounded text-sm font-bold transition-all flex items-center gap-2 cursor-pointer"
             >
               عرض التوصية الفنية
               <ArrowLeft className="w-4 h-4" />
@@ -229,10 +229,10 @@ export default function SubscriptionCards() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="flex-1 min-w-[280px] bg-stone-950/80 p-4 rounded-xl border border-stone-800 text-sm text-stone-300 leading-relaxed font-sans"
+                  className="flex-1 min-w-[280px] bg-[#101415]/85 p-4 rounded border border-stone-800 text-sm text-stone-300 leading-relaxed font-sans"
                   dangerouslySetInnerHTML={{
                     __html: calcResult
-                      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-400 font-bold">$1</strong>')
+                      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-secondary font-bold">$1</strong>')
                   }}
                 />
               )}

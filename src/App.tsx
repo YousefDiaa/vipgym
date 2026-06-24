@@ -26,7 +26,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-stone-200 selection:bg-gold-500 selection:text-black">
+    <div className="min-h-screen bg-surface-base text-stone-200 selection:bg-secondary selection:text-black">
       {/* Premium Header */}
       <Header />
 
@@ -60,7 +60,7 @@ export default function App() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={scrollToTop}
-            className="p-3.5 bg-stone-900 border border-gold-500/30 text-gold-400 rounded-full hover:bg-gold-500 hover:text-black hover:scale-105 transition-all shadow-xl cursor-pointer"
+            className="p-3.5 bg-surface-container border border-secondary/30 text-secondary rounded-full hover:bg-secondary hover:text-black hover:scale-105 transition-all shadow-xl cursor-pointer"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-5 h-5" />
