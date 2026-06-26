@@ -19,12 +19,7 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [showLocationSelector, setShowLocationSelector] = useState(() => {
-    if (typeof window !== "undefined") {
-      return !localStorage.getItem("vip_gym_location_selected");
-    }
-    return true;
-  });
+  const [showLocationSelector, setShowLocationSelector] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
