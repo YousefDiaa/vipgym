@@ -1,7 +1,15 @@
 import { Flame, Clock, Award, Compass, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 export default function Hero() {
+  const [videoSrc, setVideoSrc] = useState("/hero_video.mp4");
+
+  const handleVideoError = () => {
+    // Graceful fallback to premium gym stock video if local/custom video is missing
+    setVideoSrc("https://assets.mixkit.co/videos/preview/mixkit-gym-member-training-with-dumbbells-4876-large.mp4");
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -30,12 +38,17 @@ export default function Hero() {
       {/* Background Graphic */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#101415]/30 via-[#101415]/80 to-[#101415] z-10" />
-        <img
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
-          alt="VIP Gym Premium Nile View Concept"
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover opacity-35 object-center scale-105 transform motion-safe:animate-[pulse_8s_infinite_alternate]"
-        />
+        <video
+          key={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onError={handleVideoError}
+          className="w-full h-full object-cover opacity-35 object-center scale-105 transform"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
         {/* Nile-like blue-neon subtle glow mesh background */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
