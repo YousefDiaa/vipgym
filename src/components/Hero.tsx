@@ -3,11 +3,11 @@ import { motion } from "motion/react";
 import { useState } from "react";
 
 export default function Hero() {
-  const [videoSrc, setVideoSrc] = useState("/hero_video.mp4");
+  const [videoSrc, setVideoSrc] = useState("hero_video.mp4");
 
   const handleVideoError = () => {
     // Graceful fallback to premium gym stock video if local/custom video is missing
-    setVideoSrc("https://assets.mixkit.co/videos/preview/mixkit-gym-member-training-with-dumbbells-4876-large.mp4");
+    setVideoSrc("https://cdn.coverr.co/videos/coverr-working-out-at-the-gym-8424/1080p.mp4");
   };
 
   const containerVariants = {
