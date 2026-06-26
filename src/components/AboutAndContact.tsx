@@ -135,14 +135,73 @@ export default function AboutAndContact() {
           {/* Column 2: About info, Address, Contacts (lg:col-span-6) */}
           <div className="lg:col-span-6 space-y-8 text-right">
             
-            {/* 1. Who We Are */}
-            <div>
-              <h3 className="text-xl sm:text-2xl font-display font-black text-white mb-3">
-                تاريخ وعراقة <span className="text-secondary font-mono">VIP GYM</span>
-              </h3>
+            {/* 1. Who We Are - Beautiful Timeline Style */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 justify-end">
+                <Sparkles className="w-5 h-5 text-secondary animate-pulse" />
+                <h3 className="text-xl sm:text-2xl font-display font-black text-white">
+                  تاريخ وعراقة <span className="text-secondary font-mono">VIP GYM</span>
+                </h3>
+              </div>
+              
               <p className="text-stone-300 text-sm sm:text-base font-sans leading-relaxed">
-                نحن لسنا صالة رياضية عادية، بل صرح متكامل للياقة البدنية تأسس كعلامة فارقة داخل <span className="text-white font-bold">نادي المنيا الرياضي العريق منذ عام 2006</span>. نعمل جاهدين على تقديم أرقى خدمات الرعاية البدنية والصحية، وصناعة الأبطال الرياضيين، وإعداد الكوادر والشباب على يد نخبة من أفضل الكباتن والمدربين المعتمدين دولياً.
+                نحن لسنا مجرد صالة رياضية، بل قصة نجاح ممتدة وصرح متكامل للياقة البدنية تأسس كعلامة فارقة لتقديم أرقى مستويات التدريب وصناعة الأبطال. إليك محطات مسيرتنا الحافلة بالتميز:
               </p>
+
+              {/* Timeline Track */}
+              <div className="relative border-r border-stone-800 pr-6 mr-3 space-y-6 pt-2">
+                {[
+                  {
+                    year: "2006",
+                    title: "افتتاح نادي المنيا",
+                    desc: "التأسيس والانطلاقة الأولى كعلامة فارقة ومقر رسمي داخل نادي المنيا الرياضي العريق لتوفير صالة ألعاب رياضية رائدة وصناعة جيل جديد من الرياضيين."
+                  },
+                  {
+                    year: "2019",
+                    title: "افتتاح نادي السكة الحديد",
+                    desc: "التوسع الاستراتيجي عبر افتتاح فرع نادي السكة الحديد بالمنيا لتقديم مستويات خدمة استثنائية لقطاع أكبر من محبي اللياقة البدنية والرياضة."
+                  },
+                  {
+                    year: "2021",
+                    title: "تطوير نادي المنيا",
+                    desc: "أكبر عملية إعادة هيكلة وتحديث شامل للفرع الرئيسي وتزويده بأحدث خطوط الأجهزة الرياضية الفاخرة والذكية من كبرى الماركات العالمية."
+                  },
+                  {
+                    year: "2026",
+                    title: "افتتاح فرع سيتي سكيب مول",
+                    desc: "أحدث فروعنا الفاخرة بمدينة المنيا الجديدة، لتوفير تجربة لياقة متطورة واستثنائية ببوفيه صحي، عيادات متكاملة، وأرقى الأجهزة الحديثة."
+                  }
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="relative group text-right"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  >
+                    {/* Bullet Indicator centered on the parent border-r */}
+                    <div className="absolute -right-[30px] top-4 w-3.5 h-3.5 rounded-full bg-[#101415] border-2 border-stone-800 group-hover:border-secondary transition-all duration-300 shadow-md group-hover:shadow-[0_0_10px_rgba(164,214,76,0.6)] z-10 flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-stone-700 group-hover:bg-secondary transition-colors" />
+                    </div>
+
+                    {/* Content container */}
+                    <div className="bg-[#131618]/50 hover:bg-[#131618] border border-stone-850 hover:border-secondary/20 p-4 sm:p-5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+                      <div className="flex items-center justify-between gap-2 flex-row-reverse mb-2">
+                        <span className="text-secondary font-mono font-black text-xs sm:text-sm bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20 shadow-[0_0_8px_rgba(164,214,76,0.1)]">
+                          {item.year}
+                        </span>
+                        <h4 className="text-white font-display font-extrabold text-sm sm:text-base group-hover:text-secondary transition-colors">
+                          {item.title}
+                        </h4>
+                      </div>
+                      <p className="text-stone-450 text-xs sm:text-sm font-sans leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* 2. Address & Google Location */}
