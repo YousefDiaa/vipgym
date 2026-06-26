@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Phone, MessageSquare, Dumbbell, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import Logo from "./Logo";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +17,14 @@ export default function Header() {
 
   const navItems = [
     { name: "من نحن", href: "#about" },
-    { name: "الباقات والاشتراكات", href: "#pricing" },
-    { name: "مكونات الصالة", href: "#facilities" },
-    { name: "الأنشطة الرياضية", href: "#activities" },
-    { name: "الخدمات المجانية", href: "#freebies" },
-    { name: "الحقوق والالتزامات", href: "#rules" },
-    { name: "اتصل بنا", href: "#contact" },
+    { name: "المواعيد", href: "#schedules" },
+    { name: "القاعات", href: "#halls" },
+    { name: "المدربين", href: "#trainers" },
+    { name: "الأجهزة", href: "#equipment" },
+    { name: "خدمات متنوعة", href: "#services" },
+    { name: "التأهيل العسكري", href: "#military-prep" },
+    { name: "البوفيه", href: "#buffet" },
+    { name: "الإيفنتات", href: "#events" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -45,19 +48,17 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo Brand */}
-          <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-br from-secondary to-[#D9F99D] p-2 rounded flex items-center justify-center neon-glow">
-              <Dumbbell className="w-5 h-5 text-black transform -rotate-45" />
-            </div>
-            <div>
-              <span className="font-display font-extrabold text-xl tracking-tight text-white block">
-                VIP <span className="text-secondary">GYM</span> <span className="text-xs text-primary font-normal tracking-widest uppercase">ELITE</span>
+          <a href="#" className="flex items-center gap-2 group cursor-pointer">
+            <Logo showText={false} size="custom" iconSizeClassName="w-14 h-10" />
+            <div className="text-right">
+              <span className="font-display font-extrabold text-lg sm:text-xl tracking-tight text-white block group-hover:text-secondary transition-colors leading-none">
+                VIP <span className="text-secondary">GYM</span> <span className="text-[10px] sm:text-xs text-secondary/90 font-bold tracking-widest uppercase block sm:inline sm:mr-1 font-mono">HEALTH CLUB</span>
               </span>
-              <span className="text-[10px] text-stone-400 block -mt-1 font-medium font-sans">
+              <span className="text-[10px] text-stone-400 block mt-0.5 font-medium font-sans">
                 نادي المنيا الرياضي
               </span>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">

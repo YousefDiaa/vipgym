@@ -52,7 +52,7 @@ export default function FeaturesGrid() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs uppercase tracking-widest text-secondary font-bold font-mono">الريادة والقيمة المضافة</span>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-white mt-2 mb-4">
-            لماذا تختار <span className="neon-gradient-text uppercase">VIP GYM ELITE</span>؟
+            لماذا تختار <span className="neon-gradient-text uppercase">VIP GYM HEALTH CLUB</span>؟
           </h2>
           <p className="text-stone-300 text-base sm:text-lg font-sans">
             نحن لسنا مجرد صالة تمرين عادية، بل نحن مجتمع رياضي وصحي متكامل ومجهز بأفضل الخبرات لخدمة كافة الأعمار بنادي المنيا الرياضي.

@@ -60,7 +60,7 @@ export default function SubscriptionCards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
-            باقات واشتراكات <span className="neon-gradient-text uppercase">VIP GYM ELITE</span>
+            باقات واشتراكات <span className="neon-gradient-text uppercase">VIP GYM HEALTH CLUB</span>
           </h2>
           <p className="text-stone-300 text-base sm:text-lg font-sans">
             اختر باقة الاشتراك المناسبة لإمكانياتك وأهدافك البدنية. نضمن لك أعلى جودة تدريب وأحدث الأجهزة مع ميزات مجانية حصرية.

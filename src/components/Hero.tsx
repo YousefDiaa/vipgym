@@ -57,7 +57,7 @@ export default function Hero() {
 
             <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-tight text-white tracking-tight">
               ابدأ رحلة التميز مع <br />
-              <span className="neon-gradient-text uppercase">VIP GYM ELITE</span>
+              <span className="neon-gradient-text uppercase">VIP GYM HEALTH CLUB</span>
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-stone-300 text-lg sm:text-xl font-sans leading-relaxed max-w-2xl">

@@ -1,17 +1,30 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import FeaturesGrid from "./components/FeaturesGrid";
+import AboutAndContact from "./components/AboutAndContact";
+import ScheduleSection from "./components/ScheduleSection";
+import HallsSection from "./components/HallsSection";
+import TrainersSection from "./components/TrainersSection";
+import EquipmentSection from "./components/EquipmentSection";
+import DiverseServices from "./components/DiverseServices";
+import MilitaryPrep from "./components/MilitaryPrep";
+import BuffetSection from "./components/BuffetSection";
+import EventsSection from "./components/EventsSection";
 import SubscriptionCards from "./components/SubscriptionCards";
-import ActivitiesGrid from "./components/ActivitiesGrid";
-import FreeServicesList from "./components/FreeServicesList";
 import RulesSection from "./components/RulesSection";
 import FooterAndContact from "./components/FooterAndContact";
-import { motion } from "motion/react";
+import LocationSelector from "./components/LocationSelector";
+import { motion, AnimatePresence } from "motion/react";
 import { ArrowUp, Star, Phone, MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showLocationSelector, setShowLocationSelector] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !localStorage.getItem("vip_gym_location_selected");
+    }
+    return true;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +33,18 @@ export default function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock or unlock body scrolling depending on LocationSelector visibility
+  useEffect(() => {
+    if (showLocationSelector) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showLocationSelector]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -33,22 +58,40 @@ export default function App() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Features / Why us section */}
-      <FeaturesGrid />
+      {/* 1. من نحن + العنوان + الـ View + الصور + بيانات التواصل */}
+      <AboutAndContact />
 
-      {/* Subscription Cards & Price Options */}
+      {/* 2. المواعيد */}
+      <ScheduleSection />
+
+      {/* 3. القاعات: القاعة الداخلية، القاعة الخارجية */}
+      <HallsSection />
+
+      {/* 4. المدربين: مدربين رجال، مدربين سيدات */}
+      <TrainersSection />
+
+      {/* 5. الأجهزة: أجهزة القاعة الداخلية، أجهزة القاعة الخارجية */}
+      <EquipmentSection />
+
+      {/* 6. خدمات متنوعة */}
+      <DiverseServices />
+
+      {/* 7. التأهيل العسكري */}
+      <MilitaryPrep />
+
+      {/* 8. البوفيه - مأكولات ومشروبات */}
+      <BuffetSection />
+
+      {/* 9. الحفلات والإيفنتات */}
+      <EventsSection />
+
+      {/* Extra: Subscription Tiers & Plans for quick actions */}
       <SubscriptionCards />
 
-      {/* Facilities, Components & Hall elements */}
-      <ActivitiesGrid />
-
-      {/* Completely free privileges */}
-      <FreeServicesList />
-
-      {/* Client Rights, Behaviors, Guidelines */}
+      {/* Extra: Guidelines, rights and behavioral rules */}
       <RulesSection />
 
-      {/* Contact info, landmark map & footer */}
+      {/* Closing Map and Footer Copyright Signature */}
       <FooterAndContact />
 
       {/* Floating Call to Actions for fast conversion */}
@@ -78,6 +121,13 @@ export default function App() {
           <MessageSquare className="w-5 h-5" />
         </a>
       </div>
+
+      {/* Location Selector Gateway Overlay */}
+      <AnimatePresence>
+        {showLocationSelector && (
+          <LocationSelector onSelect={() => setShowLocationSelector(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
