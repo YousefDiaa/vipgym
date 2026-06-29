@@ -116,10 +116,10 @@ export default function LocationSelector({ onSelect }: LocationSelectorProps) {
               <div className="relative z-10">
                 {/* Badge */}
                 <div className="flex justify-between items-center mb-2 sm:mb-4">
-                  <span className="bg-secondary/10 text-secondary border border-secondary/20 text-[8px] xs:text-[9px] sm:text-xs font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded">
-                    الفرع الجديد (نشط)
+                  <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[8px] xs:text-[9px] sm:text-xs font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded">
+                    قريباً (Soon)
                   </span>
-                  <MapPin className="text-secondary w-3.5 h-3.5 sm:w-5 sm:h-5 animate-pulse" />
+                  <MapPin className="text-stone-500 w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
 
                 {/* Title */}
