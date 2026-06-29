@@ -23,7 +23,7 @@ export default function Logo({
   };
 
   const selectedSize = sizes[size] || sizes.md;
-  const imgSrc = showText ? "/logo-full.png" : "/logo-icon.png";
+  const imgSrc = showText ? "logo-full.png" : "logo-icon.png";
 
   return (
     <div className={`flex items-center justify-center ${className}`}>
