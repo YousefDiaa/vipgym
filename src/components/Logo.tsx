@@ -1,6 +1,5 @@
 import React from "react";
-import logoFull from "../assets/logo-full.webp";
-import logoIcon from "../assets/logo-icon.webp";
+import { logoFull, logoIcon } from "../assets/logoBase64";
 
 interface LogoProps {
   className?: string;
