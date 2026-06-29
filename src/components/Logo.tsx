@@ -1,4 +1,6 @@
 import React from "react";
+import logoFull from "../assets/logo-full.png";
+import logoIcon from "../assets/logo-icon.png";
 
 interface LogoProps {
   className?: string;
@@ -23,7 +25,7 @@ export default function Logo({
   };
 
   const selectedSize = sizes[size] || sizes.md;
-  const imgSrc = showText ? "logo-full.png" : "logo-icon.png";
+  const imgSrc = showText ? logoFull : logoIcon;
 
   return (
     <div className={`flex items-center justify-center ${className}`}>
@@ -36,4 +38,5 @@ export default function Logo({
     </div>
   );
 }
+
 
