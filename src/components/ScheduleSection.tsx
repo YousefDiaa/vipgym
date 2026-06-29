@@ -26,7 +26,7 @@ export default function ScheduleSection() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           
           {/* Shift 1: Men (24 Hours) */}
-          <div className="bg-[#131618] border-2 border-secondary/20 hover:border-secondary rounded-2xl p-6 sm:p-8 text-right flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_25px_rgba(164,214,76,0.1)] relative overflow-hidden">
+          <div className="bg-[#131618] border-2 border-secondary/20 hover:border-secondary rounded-2xl p-6 sm:p-8 text-right flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_25px_rgba(219,225,36,0.1)] relative overflow-hidden">
             <div className="absolute top-0 left-0 bg-secondary text-black font-mono font-black text-xs px-3 py-1 rounded-br-xl">
               24 HOURS ACTIVE
             </div>

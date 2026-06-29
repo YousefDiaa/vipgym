@@ -197,7 +197,7 @@ export default function RulesSection() {
                         key={idx}
                         className={`p-4 rounded-lg border flex gap-3.5 items-start text-sm font-sans ${
                           isCrucial
-                            ? "bg-secondary/5 border-secondary/20 text-stone-200 shadow-[0_0_15px_rgba(164,214,76,0.05)]"
+                            ? "bg-secondary/5 border-secondary/20 text-stone-200 shadow-[0_0_15px_rgba(219,225,36,0.05)]"
                             : "bg-[#191c1e] border-stone-800/80 text-stone-300 hover:border-stone-700 transition-all"
                         }`}
                       >

@@ -181,14 +181,14 @@ export default function AboutAndContact() {
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
                   >
                     {/* Bullet Indicator centered on the parent border-r */}
-                    <div className="absolute -right-[30px] top-4 w-3.5 h-3.5 rounded-full bg-[#101415] border-2 border-stone-800 group-hover:border-secondary transition-all duration-300 shadow-md group-hover:shadow-[0_0_10px_rgba(164,214,76,0.6)] z-10 flex items-center justify-center">
+                    <div className="absolute -right-[30px] top-4 w-3.5 h-3.5 rounded-full bg-[#101415] border-2 border-stone-800 group-hover:border-secondary transition-all duration-300 shadow-md group-hover:shadow-[0_0_10px_rgba(219,225,36,0.6)] z-10 flex items-center justify-center">
                       <div className="w-1.5 h-1.5 rounded-full bg-stone-700 group-hover:bg-secondary transition-colors" />
                     </div>
 
                     {/* Content container */}
                     <div className="bg-[#131618]/50 hover:bg-[#131618] border border-stone-850 hover:border-secondary/20 p-4 sm:p-5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
                       <div className="flex items-center justify-between gap-2 flex-row-reverse mb-2">
-                        <span className="text-secondary font-mono font-black text-xs sm:text-sm bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20 shadow-[0_0_8px_rgba(164,214,76,0.1)]">
+                        <span className="text-secondary font-mono font-black text-xs sm:text-sm bg-secondary/10 px-2.5 py-0.5 rounded-full border border-secondary/20 shadow-[0_0_8px_rgba(219,225,36,0.1)]">
                           {item.year}
                         </span>
                         <h4 className="text-white font-display font-extrabold text-sm sm:text-base group-hover:text-secondary transition-colors">
@@ -233,7 +233,7 @@ export default function AboutAndContact() {
                   href="https://maps.app.goo.gl/ajBBevKaQVSVVKWz6?g_st=ac"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-secondary hover:bg-[#86bf30] text-black font-extrabold text-sm py-3 px-4 rounded-xl flex items-center justify-between transition-all duration-300 hover:scale-[1.01] shadow-lg"
+                  className="w-full bg-secondary hover:bg-[#c2c820] text-black font-extrabold text-sm py-3 px-4 rounded-xl flex items-center justify-between transition-all duration-300 hover:scale-[1.01] shadow-lg"
                 >
                   <ExternalLink className="w-4 h-4 text-black" />
                   <span>فتح الموقع المباشر على خرائط Google</span>

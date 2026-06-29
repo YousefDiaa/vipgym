@@ -157,7 +157,7 @@ export default function FooterAndContact() {
                     href="https://maps.google.com/?q=نادي+المنيا+الرياضي+كورنيش+النيل"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-secondary hover:bg-[#86bf30] text-black font-extrabold text-xs py-2 px-5 rounded inline-flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
+                    className="bg-secondary hover:bg-[#c2c820] text-black font-extrabold text-xs py-2 px-5 rounded inline-flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
                   >
                     <span>فتح الموقع في خرائط Google</span>
                     <ExternalLink className="w-3.5 h-3.5" />

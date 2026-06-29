@@ -17,8 +17,8 @@
   
   --color-primary: #bec6e0;
   --color-primary-container: #0f172a;
-  --color-secondary: #a4d64c;
-  --color-secondary-container: #719e13;
+  --color-secondary: #dbe124;
+  --color-secondary-container: #b2b81d;
   --color-tertiary: #b9c7e0;
   
   --color-neon: #D9F99D;
@@ -38,18 +38,18 @@
 
 /* Custom classes for extra glow and polish according to VIP GYM Elite specification */
 .neon-gradient-text {
-  background: linear-gradient(135deg, #E2F9B8 0%, #a4d64c 50%, #719e13 100%);
+  background: linear-gradient(135deg, #f7fad4 0%, #dbe124 50%, #b2b81d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .neon-glow {
-  box-shadow: 0 0 15px rgba(164, 214, 76, 0.15);
+  box-shadow: 0 0 15px rgba(219, 225, 36, 0.15);
 }
 
 .neon-glow-hover:hover {
-  box-shadow: 0 0 25px rgba(164, 214, 76, 0.35);
-  border-color: #a4d64c;
+  box-shadow: 0 0 25px rgba(219, 225, 36, 0.35);
+  border-color: #dbe124;
 }
 
 .glass-card {
@@ -61,7 +61,7 @@
 .glass-card-neon {
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(164, 214, 76, 0.25);
+  border: 1px solid rgba(219, 225, 36, 0.25);
 }
 
 /* Power Slant: 6-degree dynamic cut applied to evoke momentum */
@@ -85,5 +85,5 @@
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a4d64c;
+  background: #dbe124;
 }
