@@ -13,12 +13,14 @@ import SubscriptionCards from "./components/SubscriptionCards";
 import RulesSection from "./components/RulesSection";
 import FooterAndContact from "./components/FooterAndContact";
 import LocationSelector from "./components/LocationSelector";
+import CityscapePage from "./components/CityscapePage";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUp, Star, Phone, MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<"minya_club" | "cityscape_mall" | null>(null);
   const [showLocationSelector, setShowLocationSelector] = useState(true);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function App() {
 
   // Lock or unlock body scrolling depending on LocationSelector visibility
   useEffect(() => {
-    if (showLocationSelector) {
+    if (showLocationSelector || !selectedLocation) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -39,16 +41,43 @@ export default function App() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [showLocationSelector]);
+  }, [showLocationSelector, selectedLocation]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 1. If we are showing the location selector, render ONLY the selector as the landing portal
+  if (showLocationSelector || !selectedLocation) {
+    return (
+      <LocationSelector 
+        onSelect={() => {
+          const selected = localStorage.getItem("vip_gym_location_selected") as any;
+          setSelectedLocation(selected);
+          setShowLocationSelector(false);
+        }} 
+      />
+    );
+  }
+
+  // 2. If cityscape_mall is selected, render CityscapePage
+  if (selectedLocation === "cityscape_mall") {
+    return (
+      <CityscapePage 
+        onBackToMain={() => {
+          setSelectedLocation("minya_club");
+        }}
+        onChangeBranch={() => {
+          setShowLocationSelector(true);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-surface-base text-stone-200 selection:bg-secondary selection:text-black">
       {/* Premium Header */}
-      <Header />
+      <Header onChangeBranch={() => setShowLocationSelector(true)} />
 
       {/* Hero Section */}
       <Hero />
@@ -116,13 +145,6 @@ export default function App() {
           <MessageSquare className="w-5 h-5" />
         </a>
       </div>
-
-      {/* Location Selector Gateway Overlay */}
-      <AnimatePresence>
-        {showLocationSelector && (
-          <LocationSelector onSelect={() => setShowLocationSelector(false)} />
-        )}
-      </AnimatePresence>
     </div>
   );
 }

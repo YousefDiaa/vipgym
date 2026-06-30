@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Phone, MessageSquare, Dumbbell, Clock } from "lucide-react";
+import { Menu, X, Phone, MessageSquare, Dumbbell, Clock, Compass } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Logo from "./Logo";
 
-export default function Header() {
+interface HeaderProps {
+  onChangeBranch?: () => void;
+}
+
+export default function Header({ onChangeBranch }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -77,6 +81,15 @@ export default function Header() {
 
           {/* Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            {onChangeBranch && (
+              <button
+                onClick={onChangeBranch}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-900 border border-stone-800 text-stone-300 hover:text-secondary hover:border-secondary/40 text-xs font-bold transition-all cursor-pointer"
+              >
+                <Compass className="w-3.5 h-3.5 text-secondary animate-spin" style={{ animationDuration: "10s" }} />
+                <span>تغيير الفرع</span>
+              </button>
+            )}
             <a
               href="https://wa.me/201009244078"
               target="_blank"
@@ -97,6 +110,15 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center lg:hidden gap-2">
+            {onChangeBranch && (
+              <button
+                onClick={onChangeBranch}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-stone-900 border border-stone-800 text-stone-300 text-[10px] font-bold transition-all cursor-pointer"
+              >
+                <Compass className="w-3 h-3 text-secondary animate-spin" style={{ animationDuration: "10s" }} />
+                <span>تغيير الفرع</span>
+              </button>
+            )}
             <a
               href="tel:01007555737"
               className="p-2 bg-secondary rounded text-black sm:hidden"
@@ -137,6 +159,18 @@ export default function Header() {
                 </a>
               ))}
               <div className="pt-4 flex flex-col gap-2.5">
+                {onChangeBranch && (
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      onChangeBranch();
+                    }}
+                    className="flex items-center justify-center gap-2 w-full bg-stone-900 border border-stone-800 text-stone-200 py-2.5 rounded text-base font-bold cursor-pointer"
+                  >
+                    <Compass className="w-5 h-5 text-secondary" />
+                    <span>تغيير الفرع (فرع سيتي سكيب)</span>
+                  </button>
+                )}
                 <a
                   href="https://wa.me/201009244078"
                   target="_blank"
