@@ -419,10 +419,22 @@ export default function CityscapePage({ onBackToMain, onChangeBranch }: Cityscap
                 </div>
               </div>
 
-              {/* Under-video helpful hints */}
-              <div className="flex items-center justify-center gap-1.5 text-stone-500 text-[9px] sm:text-[10px] text-center font-sans max-w-xs mt-1">
-                <AlertCircle className="w-3 h-3 text-secondary flex-shrink-0" />
-                <span>شاهد قصة بناء وتجهيز فرع سيتي سكيب مول الفاخر</span>
+              {/* Under-video Status Badge & Info */}
+              <div className="flex flex-col items-center gap-2 mt-3.5 w-full max-w-[340px] px-2">
+                {/* Under Construction Premium Badge */}
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] sm:text-xs font-bold font-sans shadow-[0_0_20px_rgba(245,158,11,0.15)] select-none">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                  </span>
+                  <span className="tracking-wide">الفرع قيد الإنشاء والتجهيز حالياً</span>
+                  <span className="text-[9px] text-amber-500/80 font-mono">• Under Construction</span>
+                </div>
+
+                <div className="flex items-center justify-center gap-1.5 text-stone-500 text-[9px] sm:text-[10px] text-center font-sans">
+                  <AlertCircle className="w-3 h-3 text-secondary flex-shrink-0" />
+                  <span>شاهد قصة ومراحل صب وتجهيز فرع سيتي سكيب مول الفاخر</span>
+                </div>
               </div>
             </motion.div>
           )}
@@ -435,176 +447,206 @@ export default function CityscapePage({ onBackToMain, onChangeBranch }: Cityscap
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 80, delay: 0.1 }}
-              className="w-full max-w-4xl py-6 flex flex-col items-center gap-8 relative"
+              className="w-full max-w-4xl py-4 sm:py-8 flex flex-col items-center gap-6 sm:gap-8 relative"
             >
               
               {/* Core Dynamic Flyer Card */}
-              <div className="w-full bg-gradient-to-b from-[#131719] to-[#0a0d0e] border border-secondary/20 rounded-2xl p-4 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden relative text-center">
+              <div className="w-full bg-gradient-to-b from-[#111516] via-[#090c0d] to-[#040607] border-2 border-secondary/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.9)] overflow-hidden relative text-center">
                 
-                {/* Visual Glows and Effects */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-40 bg-gradient-to-b from-secondary/10 to-transparent blur-2xl pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
-                <div className="absolute -left-10 top-1/4 w-80 h-80 bg-stone-900/30 rounded-full blur-[80px] pointer-events-none" />
+                {/* Visual Glows and Effects resembling the Sunset/Golden-hour aesthetic of the poster */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-[250px] bg-gradient-to-b from-yellow-500/10 via-amber-500/5 to-transparent blur-3xl pointer-events-none" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 bg-amber-400/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+                <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-cyan-950/20 via-blue-950/10 to-transparent pointer-events-none" />
 
                 {/* Floating particle sparkles */}
-                <div className="absolute top-10 left-10 text-secondary/30 animate-pulse"><Sparkles className="w-5 h-5" /></div>
-                <div className="absolute bottom-20 right-10 text-secondary/20 animate-pulse" style={{ animationDelay: "1.5s" }}><Sparkles className="w-6 h-6" /></div>
+                <div className="absolute top-10 right-10 text-secondary/30 animate-pulse"><Sparkles className="w-5 h-5" /></div>
+                <div className="absolute bottom-40 left-10 text-amber-400/20 animate-pulse" style={{ animationDelay: "1.2s" }}><Sparkles className="w-6 h-6" /></div>
 
                 {/* FLYER CONTENT */}
                 <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-8">
                   
-                  {/* Top Header Badge */}
-                  <div className="flex items-center justify-center gap-1.5 px-3.5 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest">
-                    <Sparkles className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "3s" }} />
-                    <span>VIP معاك في كل مكان</span>
+                  {/* Top Premium Badge */}
+                  <div className="flex items-center justify-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-secondary/15 to-amber-500/15 border border-secondary/30 rounded-full text-secondary text-[10px] sm:text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(219,225,36,0.15)]">
+                    <Sparkles className="w-3.5 h-3.5 text-secondary animate-pulse" />
+                    <span className="font-sans">VIP HEALTH CLUB • PREMIUM CAMPAIGN</span>
                   </div>
 
-                  {/* Main Display Title in luxury typography */}
-                  <div className="space-y-2">
-                    <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-black tracking-tight text-white leading-none">
-                      VIP <span className="text-secondary">معاك</span>
-                    </h1>
-                    <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-white leading-tight">
-                      في كل مكان
-                    </h2>
-                  </div>
-
-                  {/* Big Glowing Pulsing V Shield Emblem in water */}
-                  <div className="relative my-4 flex items-center justify-center w-48 h-48 sm:w-56 sm:h-56 bg-gradient-to-b from-stone-900/60 to-black/80 rounded-full border border-secondary/30 shadow-[0_0_35px_rgba(219,225,36,0.15)] overflow-hidden group">
-                    {/* Water waves background style */}
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-secondary/10 to-transparent pointer-events-none" />
-                    <Waves className="absolute bottom-4 text-secondary/20 w-36 h-12 animate-pulse pointer-events-none" />
-                    
-                    {/* Interactive glowing V */}
-                    <div className="relative z-10 flex flex-col items-center justify-center">
-                      <span className="text-6xl sm:text-7xl font-display font-black text-secondary drop-shadow-[0_0_20px_rgba(219,225,36,0.6)] group-hover:scale-110 transition-transform duration-300">
-                        V
-                      </span>
-                      <span className="text-[10px] sm:text-xs text-stone-400 font-mono tracking-[0.2em] uppercase mt-1">
-                        VIP GYM
-                      </span>
+                  {/* Giant 3D styled typography matching the poster: VIP معاك في كل مكان */}
+                  <div className="space-y-1 relative">
+                    <div className="text-stone-500 text-[10px] sm:text-xs tracking-[0.25em] font-mono font-bold uppercase">
+                      EXCLUSIVE ANNOUNCEMENT
                     </div>
-
-                    {/* Water splash elements */}
-                    <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/45 pointer-events-none" />
+                    
+                    {/* The majestic typography stack */}
+                    <div className="flex flex-col items-center justify-center select-none">
+                      <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-black tracking-tight text-white leading-none drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] filter">
+                        VIP GYM
+                      </h1>
+                      <div className="flex items-center justify-center gap-2 mt-1 sm:mt-2">
+                        <span className="text-3xl sm:text-5xl md:text-6xl font-display font-black text-secondary drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+                          معاك
+                        </span>
+                        <span className="text-3xl sm:text-5xl md:text-6xl font-display font-black text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] flex items-center gap-1.5">
+                          في كل مكان
+                          <span className="inline-block text-secondary animate-pulse drop-shadow-[0_0_10px_rgba(219,225,36,0.5)]">💛</span>
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Two Branches Split Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full max-w-3xl mt-4 text-right">
+                  {/* Realized Facade split columns mimicking the two beautiful buildings from the uploaded image */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full max-w-3xl mt-4 text-right">
                     
-                    {/* Branch 1 Card - Minya Club */}
-                    <div className="bg-stone-900/40 hover:bg-stone-900/60 border border-white/5 hover:border-secondary/30 rounded-xl p-5 flex flex-col justify-between transition-all group">
+                    {/* Building 1: Classic Grand Palace Facade (نادي المنيا الرياضي) */}
+                    <div className="relative bg-gradient-to-b from-[#1b1915] to-[#12110e] border border-amber-500/20 hover:border-amber-400/40 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group shadow-lg hover:shadow-amber-500/5">
+                      {/* Architectural motif glow */}
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-500/10 transition-colors" />
+                      
                       <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold px-2 py-0.5 rounded">
-                            الفرع الرئيسي الحالي (نشط)
+                        {/* Title block like the stone engraving in the picture */}
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="bg-amber-400/10 text-amber-400 border border-amber-400/20 text-[9px] font-bold px-2.5 py-0.5 rounded-md tracking-wider">
+                            المقر الرئيسي الفاخر
                           </span>
-                          <Building className="text-emerald-400 w-4.5 h-4.5" />
+                          <Building className="text-amber-400 w-5 h-5" />
                         </div>
-                        <h3 className="text-base sm:text-lg font-display font-bold text-white mb-2 group-hover:text-secondary transition-colors">
-                          نادي المنيا الرياضي
-                        </h3>
-                        <p className="text-stone-400 text-xs leading-relaxed font-sans">
-                          بوابة الكورنيش - بجوار كنتاكي المنيا.
-                          المقر الرياضي الأيقوني المتكامل لجميع الأبطال.
+                        
+                        {/* Facade Text Sign styling */}
+                        <div className="border-r-2 border-amber-400/40 pr-3.5 mb-3">
+                          <h3 className="text-lg sm:text-xl font-display font-black text-amber-200 tracking-wide">
+                            نادي المنيا الرياضي
+                          </h3>
+                          <span className="text-[10px] sm:text-[11px] text-amber-500/80 font-mono tracking-wider block mt-0.5">
+                            MINYA SPORTS CLUB • GATE 1
+                          </span>
+                        </div>
+
+                        <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-sans font-medium">
+                          بوابة الكورنيش - بجوار كنتاكي المنيا. الصرح العريق المتكامل الذي يضم أحدث صالات التدريب العالمية وإطلالة ساحرة على النيل.
                         </p>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px]">
-                        <span className="text-stone-500 font-sans">بجوار النيل مباشرة</span>
+                      <div className="mt-5 pt-4 border-t border-stone-800 flex items-center justify-between text-[11px] sm:text-xs">
+                        <span className="text-stone-500 font-sans font-semibold">بوابة الكورنيش الرئيسية</span>
                         <a 
                           href="https://maps.app.goo.gl/ajBBevKaQVSVVKWz6?g_st=ac" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-secondary font-bold flex items-center gap-1 hover:underline"
+                          className="text-amber-400 font-black flex items-center gap-1.5 hover:text-amber-300 hover:underline transition-all cursor-pointer"
                         >
-                          عرض الموقع بالخريطة
-                          <ChevronRight className="w-3.5 h-3.5" />
+                          <span>عرض الخريطة</span>
+                          <ChevronRight className="w-4 h-4" />
                         </a>
                       </div>
                     </div>
 
-                    {/* Branch 2 Card - Cityscape Mall */}
-                    <div className="bg-stone-900/40 hover:bg-stone-900/60 border border-white/5 hover:border-amber-500/30 rounded-xl p-5 flex flex-col justify-between transition-all group">
+                    {/* Building 2: Modern Futuristic Glass Facade (سيتي سكيب مول) */}
+                    <div className="relative bg-gradient-to-b from-[#1b1411] to-[#120d0b] border border-orange-500/20 hover:border-orange-500/40 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group shadow-lg hover:shadow-orange-500/5">
+                      {/* Modern facade glow */}
+                      <div className="absolute top-0 left-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-orange-500/10 transition-colors" />
+                      
                       <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded">
-                            قريباً (Soon)
+                        {/* Title block like the neon lettering on the mall */}
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[9px] font-bold px-2.5 py-0.5 rounded-md tracking-wider animate-pulse">
+                            قريباً الافتتاح الأكبر
                           </span>
-                          <Building className="text-amber-400 w-4.5 h-4.5 animate-pulse" />
+                          <Sparkles className="text-orange-400 w-5 h-5" />
                         </div>
-                        <h3 className="text-base sm:text-lg font-display font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                          سيتي سكيب مول
-                        </h3>
-                        <p className="text-stone-400 text-xs leading-relaxed font-sans">
-                          المنيا الجديدة - داخل سيتي سكيب مول.
-                          تجربة تدريبية مستقبلية بأحدث الأنظمة والتقنيات العالمية.
+
+                        {/* Facade Text Sign styling */}
+                        <div className="border-r-2 border-orange-500/40 pr-3.5 mb-3">
+                          <h3 className="text-lg sm:text-xl font-display font-black text-orange-200 tracking-wide">
+                            سيتي سكيب مول
+                          </h3>
+                          <span className="text-[10px] sm:text-[11px] text-orange-500/80 font-mono tracking-wider block mt-0.5">
+                            CITYSCAPE MALL • NEW BRANCH
+                          </span>
+                        </div>
+
+                        <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-sans font-medium">
+                          المنيا الجديدة - داخل سيتي سكيب مول. تجربة لياقة بدنية غير مسبوقة تواكب المعايير العالمية في التصميم والتجهيز الخرساني.
                         </p>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px]">
-                        <span className="text-stone-500 font-sans">الافتتاح الكبير قريباً</span>
+                      <div className="mt-5 pt-4 border-t border-stone-800 flex items-center justify-between text-[11px] sm:text-xs">
+                        <span className="text-stone-500 font-sans font-semibold">المنيا الجديدة - الطابق الثاني</span>
                         <a 
                           href="https://maps.app.goo.gl/xggdZo8xnjUzZ5vr9" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-amber-400 font-bold flex items-center gap-1 hover:underline"
+                          className="text-orange-400 font-black flex items-center gap-1.5 hover:text-orange-300 hover:underline transition-all cursor-pointer"
                         >
-                          عرض الموقع بالخريطة
-                          <ChevronRight className="w-3.5 h-3.5" />
+                          <span>عرض الخريطة</span>
+                          <ChevronRight className="w-4 h-4" />
                         </a>
                       </div>
                     </div>
 
                   </div>
 
-                  {/* Dynamic Action Buttons & Contact Badges */}
-                  <div className="w-full max-w-xl bg-stone-950/80 border border-white/5 rounded-xl p-4 sm:p-6 mt-4 space-y-4">
-                    <div className="text-xs text-stone-400 text-center font-sans font-medium">
-                      للحجز المسبق، الاستفسار، ومتابعة عروض الافتتاح الخاصة:
-                    </div>
+                  {/* Bottom details matching the flyer footer: Address and Phone numbers */}
+                  <div className="w-full max-w-2xl bg-stone-950/90 border border-stone-800/80 rounded-2xl p-5 sm:p-6 space-y-5 shadow-inner">
                     
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      {/* Phone Dial */}
-                      <a 
-                        href="tel:01007555737"
-                        className="flex-1 bg-stone-900 hover:bg-stone-800 border border-white/10 text-stone-200 py-3 px-4 rounded-lg flex items-center justify-center gap-2.5 transition-colors font-bold text-xs sm:text-sm font-sans cursor-pointer"
-                      >
-                        <Phone className="w-4 h-4 text-secondary" />
-                        <span>01007555737</span>
-                      </a>
+                    {/* Stylish Phone numbers displaying exactly like the image footer */}
+                    <div className="flex flex-col items-center gap-3">
+                      <span className="text-[10px] sm:text-xs text-stone-400 tracking-wider font-mono font-extrabold uppercase">
+                        VIP CONTACT DIRECTORY
+                      </span>
+                      
+                      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-base sm:text-xl font-mono font-black text-white select-all">
+                        <a href="tel:01007555737" className="hover:text-secondary transition-colors flex items-center gap-2 px-3 py-1.5 rounded-lg bg-stone-900 border border-stone-800">
+                          <Phone className="w-4 h-4 text-secondary" />
+                          <span>01007555737</span>
+                        </a>
+                      </div>
+                    </div>
 
-                      {/* WhatsApp Direct */}
+                    {/* Address Text matching the flyer bottom details */}
+                    <div className="pt-3 border-t border-stone-900 text-center space-y-1.5" dir="rtl">
+                      <p className="text-stone-300 text-xs sm:text-sm font-sans font-bold flex items-center justify-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-amber-500" />
+                        نادي المنيا الرياضي بوابة الكورنيش بجوار كنتاكي
+                      </p>
+                      <p className="text-stone-300 text-xs sm:text-sm font-sans font-bold flex items-center justify-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-orange-500" />
+                        المنيا الجديدة - سيتي سكيب مول (الدور الثاني)
+                      </p>
+                    </div>
+
+                    {/* Core CTA */}
+                    <div className="pt-2">
                       <a 
                         href="https://wa.me/201004448982"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 bg-green-600/10 hover:bg-green-600/20 border border-green-600/30 text-green-400 py-3 px-4 rounded-lg flex items-center justify-center gap-2.5 transition-colors font-bold text-xs sm:text-sm font-sans cursor-pointer"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-black text-xs sm:text-sm rounded-xl hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all cursor-pointer"
                       >
-                        <MessageSquare className="w-4 h-4 text-green-400" />
-                        <span>راسلنا: 01004448982</span>
+                        <MessageSquare className="w-4 h-4 text-white" />
+                        <span>راسل خدمة العملاء فوراً عبر واتساب للتسجيل المسبق</span>
                       </a>
                     </div>
+
                   </div>
 
-                  {/* Extra actions */}
-                  <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-white/5 w-full text-xs">
+                  {/* Actions Bar */}
+                  <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-stone-900 w-full text-xs">
                     <button 
                       onClick={handleRestartVideo}
-                      className="text-stone-400 hover:text-white flex items-center gap-1 px-3 py-1.5 rounded bg-stone-900/60 hover:bg-stone-900 border border-white/5 cursor-pointer"
+                      className="text-stone-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900/60 hover:bg-stone-900 border border-stone-800 cursor-pointer font-medium transition-colors"
                     >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>إعادة تشغيل العرض الترويجي</span>
+                      <RotateCcw className="w-3.5 h-3.5 text-secondary" />
+                      <span>إعادة تشغيل العرض الترويجي التفاعلي</span>
                     </button>
 
                     <button 
                       onClick={() => {
                         navigator.clipboard.writeText(window.location.href);
-                        alert("تم نسخ رابط الصفحة لمشاركتها!");
+                        alert("تم نسخ رابط الإعلان لمشاركته مع أصدقائك!");
                       }}
-                      className="text-stone-400 hover:text-white flex items-center gap-1 px-3 py-1.5 rounded bg-stone-900/60 hover:bg-stone-900 border border-white/5 cursor-pointer"
+                      className="text-stone-400 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900/60 hover:bg-stone-900 border border-stone-800 cursor-pointer font-medium transition-colors"
                     >
-                      <Share2 className="w-3.5 h-3.5" />
+                      <Share2 className="w-3.5 h-3.5 text-secondary" />
                       <span>مشاركة الإعلان</span>
                     </button>
                   </div>
