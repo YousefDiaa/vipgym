@@ -314,169 +314,219 @@ export default function App() {
       />
 
       {/* Main Single-Screen Unified Content Body */}
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 w-full relative z-10 flex flex-col">
+      <main className={`flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col ${
+        activeSection === "dashboard"
+          ? "pt-16 sm:pt-20 pb-4 h-[calc(100vh-80px)] md:h-[calc(100vh-90px)] min-h-[500px] justify-center"
+          : "pt-24 pb-20"
+      }`}>
         
-        {/* Unified Welcome Banner - Highly Compact */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-2xl mx-auto mb-4"
-        >
-          <div className="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 bg-secondary/10 border border-secondary/25 text-secondary text-[10px] font-sans font-bold rounded-full mb-1.5 select-none">
-            <span className="w-1 h-1 rounded-full bg-secondary animate-pulse" />
-            <span>الفرع الرئيسي • نادي المنيا الرياضي</span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-display font-black text-white leading-none">
-            أقسام <span className="text-secondary drop-shadow-[0_0_10px_rgba(219,225,36,0.2)]">VIP GYM</span> التفاعلية
-          </h2>
-        </motion.div>
-
-        {/* Interactive Sections Grid (Selector Tabs) - Optimized for Single Viewport Height */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 w-full mb-6">
-          {sections.map((sec, index) => {
-            const IconComponent = sec.icon;
-            const isActive = sec.id === activeSection;
-            return (
-              <motion.div
-                key={sec.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
-                onClick={() => {
-                  setActiveSection(sec.id);
-                  // Dynamic scroll to the content area panel smoothly
-                  const el = document.getElementById("active-section-panel");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-                className={`group relative border rounded-xl p-3.5 flex flex-col justify-between text-right cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-lg min-h-[145px] sm:min-h-[180px] ${
-                  isActive
-                    ? "bg-stone-900 border-secondary shadow-[0_0_15px_rgba(219,225,36,0.15)] ring-1 ring-secondary/20"
-                    : `bg-[#131618] border-stone-800/80 bg-gradient-to-br ${sec.color}`
-                }`}
-              >
-                {/* Visual Glow Layer */}
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/[0.01] pointer-events-none" />
-                
-                <div className="space-y-2 relative z-10 select-none">
-                  <div className="flex items-center justify-between mb-1">
-                    {isActive ? (
-                      <span className="bg-secondary text-black text-[8px] font-sans font-extrabold px-1.5 py-0.5 rounded flex items-center gap-1 animate-pulse">
-                        <span className="w-1.5 h-1.5 rounded-full bg-black" />
-                        النشط حالياً
-                      </span>
-                    ) : (
-                      sec.badge && (
-                        <span className="bg-stone-900/90 border border-stone-800/80 text-[8px] text-secondary font-sans font-bold px-1.5 py-0.5 rounded">
-                          {sec.badge}
-                        </span>
-                      )
-                    )}
-                    <div className={`p-1.5 rounded-lg border transition-colors shrink-0 ${
-                      isActive 
-                        ? "bg-secondary/15 border-secondary/40 text-secondary" 
-                        : "bg-stone-900/80 border-stone-800 group-hover:border-secondary/40 text-secondary"
-                    }`}>
-                      <IconComponent className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
-
-                  <h3 className={`text-xs sm:text-sm font-display font-black leading-tight transition-colors ${
-                    isActive ? "text-secondary" : "text-white group-hover:text-secondary"
-                  }`}>
-                    {sec.title}
-                  </h3>
-
-                  <p className="text-stone-400 font-sans text-[10px] sm:text-[11px] leading-relaxed line-clamp-3 sm:line-clamp-4">
-                    {sec.description}
-                  </p>
-                </div>
-
-                <div className={`mt-2 pt-2 border-t border-white/[0.02] flex items-center justify-end text-[9px] font-sans font-bold transition-colors gap-0.5 relative z-10 select-none ${
-                  isActive ? "text-secondary" : "text-stone-500 group-hover:text-secondary"
-                }`}>
-                  <span>{isActive ? "تصفح التفاصيل بالأسفل" : "عرض هذا القسم"}</span>
-                  <ChevronLeft className={`w-3 h-3 transform transition-transform ${
-                    isActive ? "-translate-x-0.5 text-secondary" : "group-hover:-translate-x-0.5"
-                  }`} />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Dynamic content viewer panel directly on the same screen */}
-        <div 
-          id="active-section-panel" 
-          className="scroll-mt-24 border border-stone-800/80 bg-[#101415]/60 rounded-2xl overflow-hidden shadow-2xl relative mb-12"
-        >
-          {activeSection !== "dashboard" && (
-            <div className="bg-[#131618] border-b border-stone-800/60 py-3.5 px-4 sm:px-6 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs text-stone-400 font-sans">عرض تفصيلي:</span>
-                <h4 className="text-sm font-display font-black text-white">
-                  {sections.find(s => s.id === activeSection)?.title}
-                </h4>
+        {activeSection === "dashboard" ? (
+          // DIRECTORY VIEW (Landing Dashboard)
+          <>
+            {/* Unified Welcome Banner - Highly Compact & Non-scrollable */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center max-w-2xl mx-auto mb-3 sm:mb-4"
+            >
+              <div className="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 bg-secondary/10 border border-secondary/25 text-secondary text-[9px] sm:text-[10px] font-sans font-bold rounded-full mb-1 sm:mb-1.5 select-none">
+                <span className="w-1 h-1 rounded-full bg-secondary animate-pulse" />
+                <span>الفرع الرئيسي • نادي المنيا الرياضي</span>
               </div>
+              <h2 className="text-base sm:text-xl md:text-2xl font-display font-black text-white leading-none">
+                أقسام <span className="text-secondary drop-shadow-[0_0_10px_rgba(219,225,36,0.2)]">VIP GYM</span> التفاعلية
+              </h2>
+              <p className="text-stone-400 font-sans text-[10px] sm:text-xs mt-1 max-w-md mx-auto leading-normal">
+                انقر على أي بطاقة لفتح القسم واستعراض المواعيد، الأسعار، الخدمات، والاشتراكات.
+              </p>
+            </motion.div>
+
+            {/* Interactive Sections Grid - Highly optimized to fit viewport exactly without scroll */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 w-full mb-3 sm:mb-4 max-w-5xl mx-auto">
+              {sections.map((sec, index) => {
+                const IconComponent = sec.icon;
+                return (
+                  <motion.div
+                    key={sec.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, delay: index * 0.02 }}
+                    onClick={() => {
+                      setActiveSection(sec.id);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className={`group relative border rounded-xl p-2.5 sm:p-3.5 flex flex-col justify-between text-right cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-xl h-[105px] sm:h-[135px] bg-[#131618] border-stone-800/80 bg-gradient-to-br ${sec.color}`}
+                  >
+                    {/* Visual Glow Layer */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+                    
+                    <div className="space-y-1 sm:space-y-1.5 relative z-10 select-none">
+                      <div className="flex items-center justify-between">
+                        {sec.badge ? (
+                          <span className="bg-stone-900/95 border border-stone-800/80 text-[7px] sm:text-[9px] text-secondary font-sans font-bold px-1.5 py-0.5 rounded truncate max-w-[70px]">
+                            {sec.badge}
+                          </span>
+                        ) : <span />}
+                        <div className="p-1 sm:p-1.5 bg-stone-900/80 rounded-lg border border-stone-800 group-hover:border-secondary/40 text-secondary transition-colors shrink-0">
+                          <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        </div>
+                      </div>
+
+                      <h3 className="text-[10px] sm:text-xs md:text-sm font-display font-black text-white group-hover:text-secondary transition-colors leading-tight line-clamp-1">
+                        {sec.title}
+                      </h3>
+
+                      <p className="text-stone-400 font-sans text-[9px] sm:text-[10px] md:text-[11px] leading-snug line-clamp-2">
+                        {sec.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-1 pt-1 border-t border-white/[0.02] flex items-center justify-end text-[8px] sm:text-[9.5px] font-sans font-bold text-stone-500 group-hover:text-secondary transition-colors gap-0.5 relative z-10 select-none">
+                      <span>عرض تفاصيل القسم</span>
+                      <ChevronLeft className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 transform group-hover:-translate-x-0.5 transition-transform" />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Quick stats ribbon instead of full heavy dashboard block - saves massive vertical space to prevent scroll */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="grid grid-cols-4 gap-2 sm:gap-4 w-full max-w-5xl mx-auto py-2 px-3 sm:py-3 sm:px-5 bg-gradient-to-r from-stone-950 via-[#131618] to-stone-950 border border-stone-800/80 rounded-xl text-center shadow-lg animate-fadeIn"
+            >
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2">
+                <span className="text-secondary font-display font-extrabold text-[10px] sm:text-xs md:text-sm">24 ساعة</span>
+                <span className="text-stone-400 text-[8px] sm:text-[10px] font-sans">عمل متواصل</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 border-r border-stone-800/60">
+                <span className="text-secondary font-display font-extrabold text-[10px] sm:text-xs md:text-sm">3 صالات</span>
+                <span className="text-stone-400 text-[8px] sm:text-[10px] font-sans">مكيفة بالكامل</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 border-r border-stone-800/60">
+                <span className="text-secondary font-display font-extrabold text-[10px] sm:text-xs md:text-sm">أجهزة CYBEX</span>
+                <span className="text-stone-400 text-[8px] sm:text-[10px] font-sans">أمريكية بالكامل</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 border-r border-stone-800/60">
+                <span className="text-secondary font-display font-extrabold text-[10px] sm:text-xs md:text-sm">+10 مدربين</span>
+                <span className="text-stone-400 text-[8px] sm:text-[10px] font-sans">معتمدين دولياً</span>
+              </div>
+            </motion.div>
+          </>
+        ) : (
+          // ACTIVE SECTION VIEW ("NEWPAGE" full screen content view)
+          <div className="space-y-6 w-full animate-fadeIn">
+            {/* Header / Breadcrumb navigation for the "newpage" */}
+            <div className="bg-[#131618]/90 border border-stone-800/80 rounded-2xl py-4 px-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-secondary/10 rounded-xl border border-secondary/30 text-secondary">
+                  {(() => {
+                    const matchedSec = sections.find(s => s.id === activeSection);
+                    const Icon = matchedSec ? matchedSec.icon : Sparkles;
+                    return <Icon className="w-5 h-5" />;
+                  })()}
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => {
+                        setActiveSection("dashboard");
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="text-xs text-stone-400 hover:text-white transition-colors font-sans cursor-pointer"
+                    >
+                      الرئيسية
+                    </button>
+                    <span className="text-stone-600 text-xs font-sans">/</span>
+                    <span className="text-xs text-secondary font-sans font-semibold">
+                      {sections.find(s => s.id === activeSection)?.title}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-display font-black text-white mt-0.5">
+                    {sections.find(s => s.id === activeSection)?.title}
+                  </h3>
+                </div>
+              </div>
+              
               <button
                 onClick={() => {
                   setActiveSection("dashboard");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="text-xs font-sans text-stone-400 hover:text-secondary transition-colors px-2.5 py-1 rounded bg-stone-900 border border-stone-800/60 cursor-pointer"
+                className="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-stone-700 text-stone-300 hover:text-white px-4 py-2 rounded-xl text-xs font-sans font-bold transition-all cursor-pointer"
               >
-                إغلاق التفاصيل ×
+                <span>العودة للأقسام الرئيسية</span>
+                <ChevronLeft className="w-4 h-4 rotate-180" />
               </button>
             </div>
-          )}
 
-          <div className="p-2 sm:p-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSection}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
+            {/* The Actual Section Content (Now occupying the entire screen) */}
+            <div className="bg-[#101415]/40 border border-stone-800/40 rounded-2xl p-1 sm:p-2 shadow-xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSection}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {renderActiveSectionContent()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom beautiful return button for intuitive navigation */}
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={() => {
+                  setActiveSection("dashboard");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="flex items-center gap-2 bg-secondary text-black hover:bg-secondary/90 px-6 py-3 rounded-xl text-xs font-display font-black shadow-lg shadow-secondary/15 transition-all cursor-pointer"
               >
-                {renderActiveSectionContent()}
-              </motion.div>
-            </AnimatePresence>
+                <span>العودة لجميع الأقسام والخدمات الرئيسية</span>
+                <ChevronLeft className="w-4 h-4 rotate-180" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Quick Help Contacts Footer */}
-        <div className="bg-[#131618]/90 border border-stone-800/80 rounded-2xl p-5 sm:p-6 w-full flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 shadow-inner">
-          <div className="text-right">
-            <h4 className="text-sm font-display font-bold text-white">هل تحتاج إلى مساعدة سريعة؟</h4>
-            <p className="text-xs text-stone-400 font-sans mt-1">فريق الدعم والريسبشن في خدمتك للإجابة على جميع الاستفسارات والاشتراكات.</p>
+        {activeSection !== "dashboard" && (
+          <div className="bg-[#131618]/90 border border-stone-800/80 rounded-2xl p-5 sm:p-6 w-full flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 shadow-inner mt-4 animate-fadeIn">
+            <div className="text-right">
+              <h4 className="text-sm font-display font-bold text-white">هل تحتاج إلى مساعدة سريعة؟</h4>
+              <p className="text-xs text-stone-400 font-sans mt-1">فريق الدعم والريسبشن في خدمتك للإجابة على جميع الاستفسارات والاشتراكات.</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <a
+                href="https://wa.me/201009244078"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-green-600/10 hover:bg-green-600/20 border border-green-500/30 text-green-400 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all font-sans"
+              >
+                <MessageSquare className="w-4 h-4" />
+                واتساب الكابتن
+              </a>
+              <a
+                href="tel:01007555737"
+                className="flex items-center gap-1.5 bg-secondary hover:bg-secondary/90 text-black px-4 py-1.5 rounded-xl text-xs font-bold transition-all font-sans"
+              >
+                <Phone className="w-4 h-4" />
+                اتصل بنا الآن
+              </a>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            <a
-              href="https://wa.me/201009244078"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-green-600/10 hover:bg-green-600/20 border border-green-500/30 text-green-400 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all font-sans"
-            >
-              <MessageSquare className="w-4 h-4" />
-              واتساب الكابتن
-            </a>
-            <a
-              href="tel:01007555737"
-              className="flex items-center gap-1.5 bg-secondary hover:bg-secondary/90 text-black px-4 py-1.5 rounded-xl text-xs font-bold transition-all font-sans"
-            >
-              <Phone className="w-4 h-4" />
-              اتصل بنا الآن
-            </a>
-          </div>
-        </div>
+        )}
 
         {/* Static Footer Brand Signature */}
-        <footer className="mt-12 py-6 border-t border-stone-900 text-center text-[10px] text-stone-600 font-sans">
-          <span>VIP GYM HEALTH CLUB • جميع الحقوق محفوظة © {new Date().getFullYear()}</span>
-        </footer>
+        {activeSection !== "dashboard" && (
+          <footer className="mt-12 py-6 border-t border-stone-900 text-center text-[10px] text-stone-600 font-sans">
+            <span>VIP GYM HEALTH CLUB • جميع الحقوق محفوظة © {new Date().getFullYear()}</span>
+          </footer>
+        )}
 
       </main>
 
