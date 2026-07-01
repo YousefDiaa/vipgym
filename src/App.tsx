@@ -14,6 +14,9 @@ import RulesSection from "./components/RulesSection";
 import FooterAndContact from "./components/FooterAndContact";
 import LocationSelector from "./components/LocationSelector";
 import CityscapePage from "./components/CityscapePage";
+import ActivitiesGrid from "./components/ActivitiesGrid";
+import MinyaDashboard from "./components/MinyaDashboard";
+import MinyaSectionHeader from "./components/MinyaSectionHeader";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUp, Star, Phone, MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -22,6 +25,7 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<"minya_club" | "cityscape_mall" | null>(null);
   const [showLocationSelector, setShowLocationSelector] = useState(true);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +59,7 @@ export default function App() {
           const selected = localStorage.getItem("vip_gym_location_selected") as any;
           setSelectedLocation(selected);
           setShowLocationSelector(false);
+          setActiveSection(null); // Reset on select
         }} 
       />
     );
@@ -66,6 +71,7 @@ export default function App() {
       <CityscapePage 
         onBackToMain={() => {
           setSelectedLocation("minya_club");
+          setActiveSection(null);
         }}
         onChangeBranch={() => {
           setShowLocationSelector(true);
@@ -74,49 +80,93 @@ export default function App() {
     );
   }
 
+  // 3. If minya_club is selected but no active section has been chosen, show MinyaDashboard directory list
+  if (selectedLocation === "minya_club" && !activeSection) {
+    return (
+      <MinyaDashboard 
+        onSelectSection={(sectionId) => {
+          setActiveSection(sectionId);
+          window.scrollTo({ top: 0 });
+        }}
+        onChangeBranch={() => {
+          setShowLocationSelector(true);
+        }}
+      />
+    );
+  }
+
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case "contact":
+        return (
+          <>
+            <AboutAndContact />
+            <FooterAndContact />
+          </>
+        );
+      case "schedule_pricing":
+        return (
+          <>
+            <ScheduleSection />
+            <SubscriptionCards />
+            <RulesSection />
+          </>
+        );
+      case "services_reasons":
+        return (
+          <>
+            <DiverseServices />
+            <HallsSection />
+            <EquipmentSection />
+          </>
+        );
+      case "activities":
+        return (
+          <ActivitiesGrid />
+        );
+      case "trainers":
+        return (
+          <TrainersSection />
+        );
+      case "military":
+        return (
+          <MilitaryPrep />
+        );
+      case "buffet":
+        return (
+          <BuffetSection />
+        );
+      case "events":
+        return (
+          <EventsSection />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-surface-base text-stone-200 selection:bg-secondary selection:text-black">
-      {/* Premium Header */}
-      <Header onChangeBranch={() => setShowLocationSelector(true)} />
+      {/* Premium Header for Active Section */}
+      <MinyaSectionHeader 
+        activeSection={activeSection!}
+        onSelectSection={(sectionId) => {
+          setActiveSection(sectionId);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        onBackToDashboard={() => {
+          setActiveSection(null);
+          window.scrollTo({ top: 0 });
+        }}
+        onChangeBranch={() => {
+          setShowLocationSelector(true);
+        }}
+      />
 
-      {/* Hero Section */}
-      <Hero />
-
-      {/* 1. من نحن + العنوان + الـ View + الصور + بيانات التواصل */}
-      <AboutAndContact />
-
-      {/* 2. المواعيد */}
-      <ScheduleSection />
-
-      {/* 3. القاعات: القاعة الداخلية، القاعة الخارجية */}
-      <HallsSection />
-
-      {/* 4. المدربين: مدربين رجال، مدربين سيدات */}
-      <TrainersSection />
-
-      {/* 5. الأجهزة: أجهزة القاعة الداخلية، أجهزة القاعة الخارجية */}
-      <EquipmentSection />
-
-      {/* 6. خدمات متنوعة */}
-      <DiverseServices />
-
-      {/* 7. التأهيل العسكري */}
-      <MilitaryPrep />
-
-      {/* 8. البوفيه - مأكولات ومشروبات */}
-      <BuffetSection />
-
-      {/* 9. الحفلات والإيفنتات */}
-      <EventsSection />
-
-      {/* Extra: Subscription Tiers & Plans for quick actions */}
-      <SubscriptionCards />
-
-      {/* Extra: Guidelines, rights and behavioral rules */}
-      <RulesSection />
-
-      {/* Closing Map and Footer Copyright Signature */}
-      <FooterAndContact />
+      {/* Main Content wrapper with top padding to account for fixed header */}
+      <div className="pt-20">
+        {renderActiveSection()}
+      </div>
 
       {/* Floating Call to Actions for fast conversion */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
