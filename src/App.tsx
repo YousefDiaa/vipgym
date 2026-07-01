@@ -18,14 +18,29 @@ import ActivitiesGrid from "./components/ActivitiesGrid";
 import MinyaDashboard from "./components/MinyaDashboard";
 import MinyaSectionHeader from "./components/MinyaSectionHeader";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUp, Star, Phone, MessageSquare } from "lucide-react";
+import { 
+  ArrowUp, 
+  Star, 
+  Phone, 
+  MessageSquare,
+  MapPin, 
+  Clock, 
+  Sparkles, 
+  Users, 
+  UserCheck, 
+  ShieldAlert, 
+  Coffee, 
+  Calendar,
+  ChevronLeft,
+  Compass
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<"minya_club" | "cityscape_mall" | null>(null);
   const [showLocationSelector, setShowLocationSelector] = useState(true);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("dashboard");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +74,7 @@ export default function App() {
           const selected = localStorage.getItem("vip_gym_location_selected") as any;
           setSelectedLocation(selected);
           setShowLocationSelector(false);
-          setActiveSection(null); // Reset on select
+          setActiveSection("dashboard"); // Default to main view dashboard on select
         }} 
       />
     );
@@ -71,7 +86,7 @@ export default function App() {
       <CityscapePage 
         onBackToMain={() => {
           setSelectedLocation("minya_club");
-          setActiveSection(null);
+          setActiveSection("dashboard");
         }}
         onChangeBranch={() => {
           setShowLocationSelector(true);
@@ -80,22 +95,159 @@ export default function App() {
     );
   }
 
-  // 3. If minya_club is selected but no active section has been chosen, show MinyaDashboard directory list
-  if (selectedLocation === "minya_club" && !activeSection) {
+  // 3. Define sections list and overview view directly in App for unified single-screen dashboard
+  const sections = [
+    {
+      id: "contact",
+      title: "العنوان و التواصل",
+      description: "موقعنا بالتفصيل على كورنيش النيل بالمنيا، أرقام الهاتف، ووسائل التواصل المباشرة معنا.",
+      icon: MapPin,
+      color: "from-blue-500/10 to-cyan-500/5 hover:border-blue-500/40 border-stone-800/80",
+      badge: "الموقع الرسمي"
+    },
+    {
+      id: "schedule_pricing",
+      title: "المواعيد و الاسعار",
+      description: "مواعيد عمل الصالات على مدار 24 ساعة، باقات الاشتراك المتنوعة (برايفت، فلور، بدون مدرب) وأسعارنا المنافسة.",
+      icon: Clock,
+      color: "from-amber-500/10 to-yellow-500/5 hover:border-amber-500/40 border-stone-800/80",
+      badge: "الأسعار الجديدة"
+    },
+    {
+      id: "services_reasons",
+      title: "الخدمات و الأسباب",
+      description: "ما الذي يجعل VIP GYM الاختيار الأول؟ أحدث الأجهزة الأمريكية CYBEX، الإطلالة البانورامية، والخدمات المميزة.",
+      icon: Sparkles,
+      color: "from-purple-500/10 to-indigo-500/5 hover:border-purple-500/40 border-stone-800/80",
+      badge: "مزايا حصرية"
+    },
+    {
+      id: "activities",
+      title: 'الأنشطة " الرجال و السيدات و الاطفال "',
+      description: "كلاسات الأيروبكس والزومبا للسيدات، برامج تدريب وتأسيس الأطفال، اليوجا، الكروس فت، وتأهيل كبار السن وذوي الهمم.",
+      icon: Users,
+      color: "from-emerald-500/10 to-teal-500/5 hover:border-emerald-500/40 border-stone-800/80",
+      badge: "لجميع الأعمار"
+    },
+    {
+      id: "trainers",
+      title: "المدربين",
+      description: "تعرف على الهيكل التنظيمي المتكامل ونخبة من أفضل الكباتن والمدربين المعتمدين محلياً ودولياً.",
+      icon: UserCheck,
+      color: "from-rose-500/10 to-pink-500/5 hover:border-rose-500/40 border-stone-800/80",
+      badge: "طاقم محترف"
+    },
+    {
+      id: "military",
+      title: "التاهيل العسكري",
+      description: "برامج إعداد بدني ونفسي مكثفة لمساعدة الطلاب المتقدمين لاجتياز اختبارات اللياقة البدنية للكليات العسكرية والشرطة بنجاح.",
+      icon: ShieldAlert,
+      color: "from-red-500/10 to-orange-500/5 hover:border-red-500/40 border-stone-800/80",
+      badge: "معدل نجاح 100%"
+    },
+    {
+      id: "buffet",
+      title: "البوفيه",
+      description: "قائمة طعام صحية متكاملة لتقديم الوجبات الرياضية، المشروبات الصحية الساخنة والباردة لراحتك بعد التمرين.",
+      icon: Coffee,
+      color: "from-amber-600/10 to-amber-700/5 hover:border-amber-500/40 border-stone-800/80",
+      badge: "وجبات صحية"
+    },
+    {
+      id: "events",
+      title: "الحفلات و events",
+      description: "تنظيم المسابقات الحماسية الأسبوعية، أحداث الجري الخارجي والضاحية وتكريم الأبطال المتميزين بالجيم.",
+      icon: Calendar,
+      color: "from-indigo-500/10 to-violet-500/5 hover:border-indigo-500/40 border-stone-800/80",
+      badge: "فعاليات تنافسية"
+    }
+  ];
+
+  const renderDashboardOverview = () => {
     return (
-      <MinyaDashboard 
-        onSelectSection={(sectionId) => {
-          setActiveSection(sectionId);
-          window.scrollTo({ top: 0 });
-        }}
-        onChangeBranch={() => {
-          setShowLocationSelector(true);
-        }}
-      />
-    );
-  }
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-[#101415]/90 border border-stone-800/90 rounded-2xl p-6 sm:p-8 text-right space-y-8 shadow-2xl relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-[80px] pointer-events-none" />
+        
+        <div className="border-b border-stone-800/60 pb-6">
+          <h3 className="text-xl sm:text-2xl font-display font-black text-white flex items-center justify-start gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
+            نظرة عامة على خدمات <span className="text-secondary">VIP GYM</span>
+          </h3>
+          <p className="text-stone-400 font-sans text-xs sm:text-sm mt-2 leading-relaxed">
+            الفرع الرئيسي بنادي المنيا الرياضي يقدم تجربة لياقة بدنية لا مثيل لها بفضل التجهيزات العالمية والخدمات الشاملة المتوفرة على مدار 24 ساعة.
+          </p>
+        </div>
 
-  const renderActiveSection = () => {
+        {/* Highlight Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-stone-900/60 border border-stone-800/50 p-4 rounded-xl text-center">
+            <div className="text-secondary font-display font-extrabold text-xl sm:text-2xl">24 ساعة</div>
+            <div className="text-stone-400 text-xs mt-1 font-sans">مواعيد عمل مرنة</div>
+          </div>
+          <div className="bg-stone-900/60 border border-stone-800/50 p-4 rounded-xl text-center">
+            <div className="text-secondary font-display font-extrabold text-xl sm:text-2xl">3 صالات</div>
+            <div className="text-stone-400 text-xs mt-1 font-sans">منفصلة بالكامل</div>
+          </div>
+          <div className="bg-stone-900/60 border border-stone-800/50 p-4 rounded-xl text-center">
+            <div className="text-secondary font-display font-extrabold text-xl sm:text-2xl">CYBEX</div>
+            <div className="text-stone-400 text-xs mt-1 font-sans">تجهيزات أمريكية</div>
+          </div>
+          <div className="bg-stone-900/60 border border-stone-800/50 p-4 rounded-xl text-center">
+            <div className="text-secondary font-display font-extrabold text-xl sm:text-2xl">+10 مدربين</div>
+            <div className="text-stone-400 text-xs mt-1 font-sans">أطقم فنية معتمدة</div>
+          </div>
+        </div>
+
+        {/* Feature list */}
+        <div className="space-y-3.5 pt-2">
+          <h4 className="text-sm font-display font-bold text-white">لماذا تختار فرع نادي المنيا؟</h4>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-stone-300 font-sans text-xs leading-relaxed">
+            <li className="flex items-center gap-2 bg-stone-900/40 p-2.5 rounded-lg border border-stone-800/30">
+              <span className="text-secondary font-bold text-sm">✓</span>
+              <span>موقع استثنائي على كورنيش النيل بالمنيا مباشرة.</span>
+            </li>
+            <li className="flex items-center gap-2 bg-stone-900/40 p-2.5 rounded-lg border border-stone-800/30">
+              <span className="text-secondary font-bold text-sm">✓</span>
+              <span>أنشطة متكاملة للرجال والسيدات والأطفال.</span>
+            </li>
+            <li className="flex items-center gap-2 bg-stone-900/40 p-2.5 rounded-lg border border-stone-800/30">
+              <span className="text-secondary font-bold text-sm">✓</span>
+              <span>برامج تأهيل بدني وعسكري معتمدة باحترافية.</span>
+            </li>
+            <li className="flex items-center gap-2 bg-stone-900/40 p-2.5 rounded-lg border border-stone-800/30">
+              <span className="text-secondary font-bold text-sm">✓</span>
+              <span>كافيه وبوفيه وجبات صحية متكامل للرياضيين.</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Call to action message */}
+        <div className="bg-secondary/5 border border-secondary/20 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-right">
+            <p className="text-xs sm:text-sm text-white font-display font-bold">ابدأ رحلتك الرياضية اليوم</p>
+            <p className="text-[11px] text-stone-400 font-sans mt-0.5">انقر على أي من الأقسام بالأعلى لاستكشاف التفاصيل المحددة.</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setActiveSection("schedule_pricing")}
+              className="bg-secondary text-black hover:bg-secondary/90 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer"
+            >
+              عرض الأسعار والاشتراكات
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  const renderActiveSectionContent = () => {
+    if (activeSection === "dashboard") {
+      return renderDashboardOverview();
+    }
     switch (activeSection) {
       case "contact":
         return (
@@ -121,52 +273,212 @@ export default function App() {
           </>
         );
       case "activities":
-        return (
-          <ActivitiesGrid />
-        );
+        return <ActivitiesGrid />;
       case "trainers":
-        return (
-          <TrainersSection />
-        );
+        return <TrainersSection />;
       case "military":
-        return (
-          <MilitaryPrep />
-        );
+        return <MilitaryPrep />;
       case "buffet":
-        return (
-          <BuffetSection />
-        );
+        return <BuffetSection />;
       case "events":
-        return (
-          <EventsSection />
-        );
+        return <EventsSection />;
       default:
-        return null;
+        return renderDashboardOverview();
     }
   };
 
   return (
-    <div className="min-h-screen bg-surface-base text-stone-200 selection:bg-secondary selection:text-black">
-      {/* Premium Header for Active Section */}
+    <div className="min-h-screen bg-[#0d0f10] text-stone-200 selection:bg-secondary selection:text-black relative overflow-hidden flex flex-col">
+      {/* Background decoration blur */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Premium Sticky Navigation Header */}
       <MinyaSectionHeader 
-        activeSection={activeSection!}
+        activeSection={activeSection}
         onSelectSection={(sectionId) => {
           setActiveSection(sectionId);
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          // Scroll dynamically to the active section panel below the tiles
+          const el = document.getElementById("active-section-panel");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }}
         onBackToDashboard={() => {
-          setActiveSection(null);
-          window.scrollTo({ top: 0 });
+          setActiveSection("dashboard");
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         onChangeBranch={() => {
           setShowLocationSelector(true);
         }}
       />
 
-      {/* Main Content wrapper with top padding to account for fixed header */}
-      <div className="pt-20">
-        {renderActiveSection()}
-      </div>
+      {/* Main Single-Screen Unified Content Body */}
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 w-full relative z-10 flex flex-col">
+        
+        {/* Unified Welcome Banner - Highly Compact */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center max-w-2xl mx-auto mb-4"
+        >
+          <div className="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 bg-secondary/10 border border-secondary/25 text-secondary text-[10px] font-sans font-bold rounded-full mb-1.5 select-none">
+            <span className="w-1 h-1 rounded-full bg-secondary animate-pulse" />
+            <span>الفرع الرئيسي • نادي المنيا الرياضي</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-display font-black text-white leading-none">
+            أقسام <span className="text-secondary drop-shadow-[0_0_10px_rgba(219,225,36,0.2)]">VIP GYM</span> التفاعلية
+          </h2>
+        </motion.div>
+
+        {/* Interactive Sections Grid (Selector Tabs) - Optimized for Single Viewport Height */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 w-full mb-6">
+          {sections.map((sec, index) => {
+            const IconComponent = sec.icon;
+            const isActive = sec.id === activeSection;
+            return (
+              <motion.div
+                key={sec.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
+                onClick={() => {
+                  setActiveSection(sec.id);
+                  // Dynamic scroll to the content area panel smoothly
+                  const el = document.getElementById("active-section-panel");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                className={`group relative border rounded-xl p-3.5 flex flex-col justify-between text-right cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-lg min-h-[145px] sm:min-h-[180px] ${
+                  isActive
+                    ? "bg-stone-900 border-secondary shadow-[0_0_15px_rgba(219,225,36,0.15)] ring-1 ring-secondary/20"
+                    : `bg-[#131618] border-stone-800/80 bg-gradient-to-br ${sec.color}`
+                }`}
+              >
+                {/* Visual Glow Layer */}
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/[0.01] pointer-events-none" />
+                
+                <div className="space-y-2 relative z-10 select-none">
+                  <div className="flex items-center justify-between mb-1">
+                    {isActive ? (
+                      <span className="bg-secondary text-black text-[8px] font-sans font-extrabold px-1.5 py-0.5 rounded flex items-center gap-1 animate-pulse">
+                        <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                        النشط حالياً
+                      </span>
+                    ) : (
+                      sec.badge && (
+                        <span className="bg-stone-900/90 border border-stone-800/80 text-[8px] text-secondary font-sans font-bold px-1.5 py-0.5 rounded">
+                          {sec.badge}
+                        </span>
+                      )
+                    )}
+                    <div className={`p-1.5 rounded-lg border transition-colors shrink-0 ${
+                      isActive 
+                        ? "bg-secondary/15 border-secondary/40 text-secondary" 
+                        : "bg-stone-900/80 border-stone-800 group-hover:border-secondary/40 text-secondary"
+                    }`}>
+                      <IconComponent className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+
+                  <h3 className={`text-xs sm:text-sm font-display font-black leading-tight transition-colors ${
+                    isActive ? "text-secondary" : "text-white group-hover:text-secondary"
+                  }`}>
+                    {sec.title}
+                  </h3>
+
+                  <p className="text-stone-400 font-sans text-[10px] sm:text-[11px] leading-relaxed line-clamp-3 sm:line-clamp-4">
+                    {sec.description}
+                  </p>
+                </div>
+
+                <div className={`mt-2 pt-2 border-t border-white/[0.02] flex items-center justify-end text-[9px] font-sans font-bold transition-colors gap-0.5 relative z-10 select-none ${
+                  isActive ? "text-secondary" : "text-stone-500 group-hover:text-secondary"
+                }`}>
+                  <span>{isActive ? "تصفح التفاصيل بالأسفل" : "عرض هذا القسم"}</span>
+                  <ChevronLeft className={`w-3 h-3 transform transition-transform ${
+                    isActive ? "-translate-x-0.5 text-secondary" : "group-hover:-translate-x-0.5"
+                  }`} />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Dynamic content viewer panel directly on the same screen */}
+        <div 
+          id="active-section-panel" 
+          className="scroll-mt-24 border border-stone-800/80 bg-[#101415]/60 rounded-2xl overflow-hidden shadow-2xl relative mb-12"
+        >
+          {activeSection !== "dashboard" && (
+            <div className="bg-[#131618] border-b border-stone-800/60 py-3.5 px-4 sm:px-6 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+                <span className="text-xs text-stone-400 font-sans">عرض تفصيلي:</span>
+                <h4 className="text-sm font-display font-black text-white">
+                  {sections.find(s => s.id === activeSection)?.title}
+                </h4>
+              </div>
+              <button
+                onClick={() => {
+                  setActiveSection("dashboard");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="text-xs font-sans text-stone-400 hover:text-secondary transition-colors px-2.5 py-1 rounded bg-stone-900 border border-stone-800/60 cursor-pointer"
+              >
+                إغلاق التفاصيل ×
+              </button>
+            </div>
+          )}
+
+          <div className="p-2 sm:p-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSection}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+              >
+                {renderActiveSectionContent()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Quick Help Contacts Footer */}
+        <div className="bg-[#131618]/90 border border-stone-800/80 rounded-2xl p-5 sm:p-6 w-full flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 shadow-inner">
+          <div className="text-right">
+            <h4 className="text-sm font-display font-bold text-white">هل تحتاج إلى مساعدة سريعة؟</h4>
+            <p className="text-xs text-stone-400 font-sans mt-1">فريق الدعم والريسبشن في خدمتك للإجابة على جميع الاستفسارات والاشتراكات.</p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <a
+              href="https://wa.me/201009244078"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 bg-green-600/10 hover:bg-green-600/20 border border-green-500/30 text-green-400 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all font-sans"
+            >
+              <MessageSquare className="w-4 h-4" />
+              واتساب الكابتن
+            </a>
+            <a
+              href="tel:01007555737"
+              className="flex items-center gap-1.5 bg-secondary hover:bg-secondary/90 text-black px-4 py-1.5 rounded-xl text-xs font-bold transition-all font-sans"
+            >
+              <Phone className="w-4 h-4" />
+              اتصل بنا الآن
+            </a>
+          </div>
+        </div>
+
+        {/* Static Footer Brand Signature */}
+        <footer className="mt-12 py-6 border-t border-stone-900 text-center text-[10px] text-stone-600 font-sans">
+          <span>VIP GYM HEALTH CLUB • جميع الحقوق محفوظة © {new Date().getFullYear()}</span>
+        </footer>
+
+      </main>
 
       {/* Floating Call to Actions for fast conversion */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
@@ -177,7 +489,7 @@ export default function App() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={scrollToTop}
-            className="p-3.5 bg-surface-container border border-secondary/30 text-secondary rounded-full hover:bg-secondary hover:text-black hover:scale-105 transition-all shadow-xl cursor-pointer"
+            className="p-3.5 bg-stone-900 border border-secondary/30 text-secondary rounded-full hover:bg-secondary hover:text-black hover:scale-105 transition-all shadow-xl cursor-pointer"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-5 h-5" />
