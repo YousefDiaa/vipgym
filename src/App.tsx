@@ -309,8 +309,8 @@ export default function App() {
       {/* Main Single-Screen Unified Content Body */}
       <main className={`flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col ${
         activeSection === "dashboard"
-          ? "pt-16 sm:pt-20 pb-4 h-[calc(100vh-80px)] md:h-[calc(100vh-90px)] min-h-[500px] justify-center"
-          : "pt-24 pb-20"
+          ? "pt-6 sm:pt-10 pb-4 h-[calc(100vh-80px)] md:h-[calc(100vh-90px)] min-h-[500px] justify-center"
+          : "pt-10 pb-20"
       }`}>
         
         {activeSection === "dashboard" ? (
