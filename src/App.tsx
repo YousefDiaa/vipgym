@@ -10,7 +10,6 @@ import MilitaryPrep from "./components/MilitaryPrep";
 import BuffetSection from "./components/BuffetSection";
 import EventsSection from "./components/EventsSection";
 import SubscriptionCards from "./components/SubscriptionCards";
-import RulesSection from "./components/RulesSection";
 import FooterAndContact from "./components/FooterAndContact";
 import LocationSelector from "./components/LocationSelector";
 import CityscapePage from "./components/CityscapePage";
@@ -250,18 +249,12 @@ export default function App() {
     }
     switch (activeSection) {
       case "contact":
-        return (
-          <>
-            <AboutAndContact />
-            <FooterAndContact />
-          </>
-        );
+        return <AboutAndContact />;
       case "schedule_pricing":
         return (
           <>
             <ScheduleSection />
             <SubscriptionCards />
-            <RulesSection />
           </>
         );
       case "services_reasons":

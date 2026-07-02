@@ -154,7 +154,7 @@ export default function FooterAndContact() {
                   <span className="block text-white font-display font-black text-sm mb-1">خريطة الموقع الجغرافي المباشر</span>
                   <span className="block text-stone-400 text-xs mb-4">اضغط على الزر أدناه للانتقال الفوري إلى خرائط جوجل</span>
                   <a
-                    href="https://maps.google.com/?q=نادي+المنيا+الرياضي+كورنيش+النيل"
+                    href="https://maps.app.goo.gl/ajBBevKaQVSVVKWz6?g_st=ac"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-secondary hover:bg-[#c2c820] text-black font-extrabold text-xs py-2 px-5 rounded inline-flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
