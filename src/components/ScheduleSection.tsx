@@ -208,9 +208,9 @@ export default function ScheduleSection() {
   const todaySchedule = activeSchedules.find(s => s.dayIndex === currentDayIndex) || activeSchedules[0];
 
   return (
-    <section id="schedules" className="space-y-16">
+    <section id="schedules" className="space-y-16 text-right" dir="rtl">
       {/* 1. Schedule & Timetable Dashboard */}
-      <div className="relative overflow-hidden rounded-2xl border border-stone-850 bg-[#101415] p-5 sm:p-8">
+      <div className="relative overflow-hidden rounded-2xl border border-stone-850 bg-[#101415] p-5 sm:p-8 text-right">
         {/* Glowing Ambient Light */}
         <div className="absolute top-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
         
@@ -226,7 +226,7 @@ export default function ScheduleSection() {
         </div>
 
         {/* Gender Filter Switcher */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8" dir="rtl">
           <div className="bg-[#181d1f] border border-stone-800 p-1 rounded-xl flex gap-1.5 max-w-sm w-full">
             <button
               onClick={() => setActiveGender("women")}
@@ -254,18 +254,18 @@ export default function ScheduleSection() {
         </div>
 
         {/* Dynamic Timetable */}
-        <div className="space-y-6">
+        <div className="space-y-6 text-right" dir="rtl">
           {/* Quick Notice Banner */}
-          <div className="bg-stone-900/50 border border-stone-850 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-right">
+          <div className="bg-stone-900/50 border border-stone-850 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 text-right">
+            <div className="flex items-center gap-3 text-right justify-start w-full md:w-auto">
               <div className={`p-2 rounded-lg shrink-0 ${activeGender === 'women' ? 'bg-pink-500/10 text-pink-400 border border-pink-500/20' : 'bg-secondary/10 text-secondary border border-secondary/20'}`}>
                 <Info className="w-4.5 h-4.5" />
               </div>
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 text-right">
                 <p className="text-white text-xs sm:text-sm font-display font-bold">
                   {activeGender === "women" ? "نظام الخصوصية المطلقة 100% للسيدات" : "منظومة تشغيل الرجال الممتدة"}
                 </p>
-                <p className="text-stone-400 text-[10px] sm:text-xs font-sans">
+                <p className="text-stone-400 text-[10px] sm:text-xs font-sans leading-relaxed">
                   {activeGender === "women" 
                     ? "القاعة الداخلية مغلقة بالكامل، ومكيفة، ويمنع فيها التصوير منعاً باتاً لراحة وحرية العضو المشترك."
                     : "القاعة الخارجية (في الهواء الطلق على النيل) مفتوحة للرجال طوال الـ 24 ساعة يومياً بدون توقف."}
@@ -273,7 +273,7 @@ export default function ScheduleSection() {
               </div>
             </div>
             {/* Quick stats for selected gender */}
-            <div className="flex gap-2.5 shrink-0 text-xs font-mono">
+            <div className="flex gap-2.5 shrink-0 text-xs font-mono justify-end w-full md:w-auto">
               <span className="bg-stone-950 border border-stone-800 px-2.5 py-1 rounded-md text-stone-300">
                 القاعة الداخلية: <strong className="text-secondary">{activeGender === 'women' ? 'مغلقة وآمنة' : 'مفتوحة بفترات'}</strong>
               </span>
@@ -284,37 +284,37 @@ export default function ScheduleSection() {
           </div>
 
           {/* Today Highlight Card */}
-          <div className="bg-gradient-to-r from-stone-950 via-[#14181a] to-stone-950 border border-secondary/25 rounded-2xl p-5 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-stone-950 via-[#14181a] to-stone-950 border border-secondary/25 rounded-2xl p-5 relative overflow-hidden text-right">
             <div className="absolute top-3 left-3 bg-secondary/10 border border-secondary/20 text-secondary text-[9px] font-mono font-bold px-2 py-0.5 rounded-full uppercase flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-ping" />
               <span>مواعيد تمرينك اليوم</span>
             </div>
             
             <div className="grid md:grid-cols-12 gap-4 items-center text-right">
-              <div className="md:col-span-3">
+              <div className="md:col-span-3 text-right">
                 <span className="text-[10px] text-stone-500 block font-sans">اليوم الحالي</span>
-                <span className="text-white font-display font-black text-xl sm:text-2xl flex items-center gap-2 justify-end mt-0.5">
+                <span className="text-white font-display font-black text-xl sm:text-2xl flex items-center gap-2 justify-start mt-0.5">
+                  <Calendar className="w-5 h-5 text-secondary shrink-0" />
                   <span>{todaySchedule.day}</span>
-                  <Calendar className="w-5 h-5 text-secondary" />
                 </span>
               </div>
               
               {/* Inside Hall Timing */}
-              <div className="md:col-span-5 bg-[#0d0f10] border border-stone-850 p-3 rounded-xl flex items-center justify-between">
-                <span className="text-[10px] text-stone-500 font-sans block text-left">INDOOR HALL</span>
+              <div className="md:col-span-5 bg-[#0d0f10] border border-stone-850 p-3 rounded-xl flex items-center justify-between text-right" dir="rtl">
                 <div className="text-right">
                   <span className="text-stone-400 text-[10px] block font-display">القاعة الداخلية المغلقة</span>
-                  <span className="text-white font-sans text-xs sm:text-sm font-bold mt-0.5 block">{todaySchedule.indoor}</span>
+                  <span className="text-white font-sans text-xs sm:text-sm font-bold mt-0.5 block" dir="rtl">{todaySchedule.indoor}</span>
                 </div>
+                <span className="text-[10px] text-stone-500 font-mono block text-left shrink-0" dir="ltr">INDOOR HALL</span>
               </div>
 
               {/* Outside Hall Timing */}
-              <div className="md:col-span-4 bg-[#0d0f10] border border-stone-850 p-3 rounded-xl flex items-center justify-between">
-                <span className="text-[10px] text-stone-500 font-sans block text-left">OUTDOOR NILE</span>
+              <div className="md:col-span-4 bg-[#0d0f10] border border-stone-850 p-3 rounded-xl flex items-center justify-between text-right" dir="rtl">
                 <div className="text-right">
                   <span className="text-stone-400 text-[10px] block font-display">القاعة الخارجية (كورنيش النيل)</span>
-                  <span className={`font-sans text-xs sm:text-sm font-bold mt-0.5 block ${todaySchedule.outdoor.includes("مغلقة") ? "text-red-400/90" : "text-white"}`}>{todaySchedule.outdoor}</span>
+                  <span className={`font-sans text-xs sm:text-sm font-bold mt-0.5 block ${todaySchedule.outdoor.includes("مغلقة") ? "text-red-400/90" : "text-white"}`} dir="rtl">{todaySchedule.outdoor}</span>
                 </div>
+                <span className="text-[10px] text-stone-500 font-mono block text-left shrink-0" dir="ltr">OUTDOOR NILE</span>
               </div>
             </div>
           </div>
@@ -363,28 +363,28 @@ export default function ScheduleSection() {
                   <div className="space-y-3">
                     {/* Indoor Hall */}
                     <div className="bg-[#121617] border border-stone-850 p-3 rounded-xl flex flex-col gap-1 text-right relative">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[9px] text-stone-500 font-mono" dir="ltr">{item.indoorTimeEn}</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                          <span className="text-stone-300 text-[10px] font-display font-extrabold">القاعة الداخلية (المكيفة)</span>
+                      <div className="flex items-center justify-between" dir="rtl">
+                        <div className="flex items-center gap-1.5 justify-start">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                          <span className="text-stone-300 text-[10px] font-display font-extrabold text-right">القاعة الداخلية (المكيفة)</span>
                         </div>
+                        <span className="text-[9px] text-stone-500 font-mono text-left" dir="ltr">{item.indoorTimeEn}</span>
                       </div>
-                      <p className="text-white text-xs font-sans font-bold mt-1 leading-relaxed" dir="rtl">
+                      <p className="text-white text-xs font-sans font-bold mt-1 leading-relaxed text-right" dir="rtl">
                         {item.indoor}
                       </p>
                     </div>
 
                     {/* Outdoor Hall */}
                     <div className="bg-[#121617] border border-stone-850 p-3 rounded-xl flex flex-col gap-1 text-right relative">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[9px] text-stone-500 font-mono" dir="ltr">{item.outdoorTimeEn}</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                          <span className="text-stone-300 text-[10px] font-display font-extrabold">القاعة الخارجية (المطلة على النيل)</span>
+                      <div className="flex items-center justify-between" dir="rtl">
+                        <div className="flex items-center gap-1.5 justify-start">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0" />
+                          <span className="text-stone-300 text-[10px] font-display font-extrabold text-right">القاعة الخارجية (المطلة على النيل)</span>
                         </div>
+                        <span className="text-[9px] text-stone-500 font-mono text-left" dir="ltr">{item.outdoorTimeEn}</span>
                       </div>
-                      <p className={`text-xs font-sans font-bold mt-1 leading-relaxed ${item.outdoor.includes("مغلقة") ? "text-red-400" : "text-white"}`} dir="rtl">
+                      <p className={`text-xs font-sans font-bold mt-1 leading-relaxed text-right ${item.outdoor.includes("مغلقة") ? "text-red-400" : "text-white"}`} dir="rtl">
                         {item.outdoor}
                       </p>
                     </div>
