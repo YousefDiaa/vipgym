@@ -104,11 +104,11 @@ export default function BuffetSection() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-[#131618] border border-stone-800 p-1 rounded-full flex gap-1">
+        <div className="flex justify-center mb-12 px-2">
+          <div className="bg-[#131618]/90 border border-stone-800/80 p-1.5 sm:p-1 rounded-2xl sm:rounded-full flex flex-col sm:flex-row gap-1.5 sm:gap-1 w-full max-w-md sm:max-w-none sm:w-auto">
             <button
               onClick={() => setActiveMenu("meals")}
-              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-4 sm:px-6 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto ${
                 activeMenu === "meals"
                   ? "bg-secondary text-black shadow-lg"
                   : "text-stone-400 hover:text-stone-200"
@@ -119,7 +119,7 @@ export default function BuffetSection() {
             </button>
             <button
               onClick={() => setActiveMenu("drinks")}
-              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-4 sm:px-6 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto ${
                 activeMenu === "drinks"
                   ? "bg-secondary text-black shadow-lg"
                   : "text-stone-400 hover:text-stone-200"
@@ -130,7 +130,7 @@ export default function BuffetSection() {
             </button>
             <button
               onClick={() => setActiveMenu("shakes")}
-              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-4 sm:px-6 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto ${
                 activeMenu === "shakes"
                   ? "bg-secondary text-black shadow-lg"
                   : "text-stone-400 hover:text-stone-200"

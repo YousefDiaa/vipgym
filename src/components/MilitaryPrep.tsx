@@ -36,6 +36,52 @@ const prepPoints: PrepPoint[] = [
   }
 ];
 
+interface Cadet {
+  id: number;
+  name: string;
+  academy: string;
+  img: string;
+}
+
+const cadets: Cadet[] = [
+  { id: 1, name: "ملازم كريم أحمد", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
+  { id: 2, name: "ملازم مصطفى حسن", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" },
+  { id: 3, name: "طالب عسكري يوسف ضياء", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150" },
+  { id: 4, name: "ملازم زياد عمرو", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150" },
+  { id: 5, name: "ملازم عمرو خالد", academy: "الكلية البحرية", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150" },
+  { id: 6, name: "ملازم أول خالد وليد", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150" },
+  { id: 7, name: "طالب عسكري عبد الرحمن", academy: "الفنية العسكرية", img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150" },
+  { id: 8, name: "ملازم طارق حامد", academy: "الدفاع الجوي", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150" },
+  { id: 9, name: "ملازم أول محمود سيد", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=150" },
+  { id: 10, name: "ملازم أحمد علي", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=150" },
+  { id: 11, name: "طالب عسكري إبراهيم عيسى", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1504257404762-5a4dd1a1dfbf?auto=format&fit=crop&q=80&w=150" },
+  { id: 12, name: "ملازم كمال الشناوي", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1513956589380-bad6acb9b9d4?auto=format&fit=crop&q=80&w=150" },
+  { id: 13, name: "ملازم حازم إمام", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=150" },
+  { id: 14, name: "طالب عسكري مروان محسن", academy: "الكلية البحرية", img: "https://images.unsplash.com/photo-1542156822-6924d1a71aba?auto=format&fit=crop&q=80&w=150" },
+  { id: 15, name: "ملازم أول شريف عبد الله", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=150" },
+  { id: 16, name: "طالب عسكري إسلام رأفت", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&q=80&w=150" },
+  { id: 17, name: "ملازم أول هاني جودة", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=150" },
+  { id: 18, name: "ملازم أول علي محمود", academy: "الدفاع الجوي", img: "https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&q=80&w=150" },
+  { id: 19, name: "ملازم مؤمن زكريا", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150" },
+  { id: 20, name: "ملازم حسين علي", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150" },
+  { id: 21, name: "طالب عسكري وليد سليمان", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1520156473893-b4241063e791?auto=format&fit=crop&q=80&w=150" },
+  { id: 22, name: "ملازم عمرو دياب", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=150" },
+  { id: 23, name: "ملازم عادل إمام", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=150" },
+  { id: 24, name: "ملازم أحمد زكي", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1485178575877-1a13bf489fea?auto=format&fit=crop&q=80&w=150" },
+  { id: 25, name: "ملازم محمود عبد العزيز", academy: "الكلية البحرية", img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=150" },
+  { id: 26, name: "ملازم فاروق الفيشاوي", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&q=80&w=150" },
+  { id: 27, name: "ملازم نور الشريف", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1512485694743-9c9538b4e6e0?auto=format&fit=crop&q=80&w=150" },
+  { id: 28, name: "ملازم يحيى الفخراني", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1511551201822-ed7d296209e4?auto=format&fit=crop&q=80&w=150" },
+  { id: 29, name: "ملازم حسين فهمي", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150" },
+  { id: 30, name: "ملازم محمود المليجي", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" },
+  { id: 31, name: "ملازم فريد شوقي", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&q=80&w=150" },
+  { id: 32, name: "ملازم رشدي أباظة", academy: "الكلية الجوية", img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150" },
+  { id: 33, name: "ملازم أحمد رمزي", academy: "الدفاع الجوي", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150" },
+  { id: 34, name: "ملازم أول عمر الشريف", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150" },
+  { id: 35, name: "ملازم سعيد عبد الغني", academy: "كلية الشرطة", img: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=150" },
+  { id: 36, name: "ملازم جميل راتب", academy: "الكلية الحربية", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150" }
+];
+
 export default function MilitaryPrep() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -217,6 +263,67 @@ export default function MilitaryPrep() {
 
             </div>
 
+          </div>
+        </div>
+
+        {/* Success Wall of Honor (Experts in Military Prep) */}
+        <div className="max-w-4xl mx-auto mb-16 bg-gradient-to-b from-[#1b2210]/40 to-[#12160d]/95 border-2 border-secondary/20 rounded-2xl p-6 sm:p-10 relative overflow-hidden text-center shadow-2xl">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none" />
+          
+          <div className="relative z-10 mb-8">
+            <h3 className="text-2xl sm:text-4xl font-display font-black text-secondary tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-secondary via-[#f3f961] to-secondary drop-shadow-[0_2px_10px_rgba(219,225,36,0.3)] select-none">
+              خبراء في التأهيل العسكري
+            </h3>
+            <p className="text-[#dbe124]/80 text-xs sm:text-sm font-display font-bold tracking-widest mt-1.5 uppercase select-none">
+              رواد في التأهيل الرياضي منذ عام 2008
+            </p>
+            <div className="h-[2px] w-16 bg-secondary/30 mx-auto rounded-full mt-3" />
+          </div>
+
+          {/* Hexagon Grid */}
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 max-w-3xl mx-auto select-none">
+            {cadets.map((cadet, index) => (
+              <motion.div
+                key={cadet.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: (index % 12) * 0.03 }}
+                className="relative group w-[52px] h-[60px] xs:w-[68px] xs:h-[78px] sm:w-[84px] sm:h-[96px] shrink-0"
+              >
+                {/* Tooltip */}
+                <div className="absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-32 bg-stone-950/95 border border-secondary/40 text-[10px] sm:text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-center shadow-2xl backdrop-blur-sm">
+                  <p className="font-display font-black text-secondary leading-none">{cadet.name}</p>
+                  <p className="text-stone-300 font-sans text-[9px] sm:text-[10px] mt-1 font-semibold">{cadet.academy}</p>
+                  <p className="text-[8px] text-stone-500 font-sans mt-0.5 font-bold">بطل VIP GYM 🏆</p>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-stone-950/95" />
+                </div>
+
+                {/* Double hexagon mask for glowing border */}
+                <div 
+                  className="w-full h-full bg-gradient-to-b from-secondary/80 via-secondary/40 to-secondary/10 p-[1.5px] xs:p-[2px] active:scale-95 transition-transform duration-200"
+                  style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+                >
+                  <div 
+                    className="w-full h-full bg-stone-900"
+                    style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
+                  >
+                    <img 
+                      src={cadet.img} 
+                      alt={cadet.name} 
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-all duration-300 filter grayscale group-hover:grayscale-0 scale-105 group-hover:scale-110" 
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-stone-500 text-xs font-sans">
+            * تم إخفاء بعض البيانات الشخصية والأسماء الكاملة احتراماً للخصوصية والقواعد العسكرية للأبطال.
           </div>
         </div>
 

@@ -35,7 +35,15 @@ export default function Header({ onChangeBranch }: HeaderProps) {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const header = document.getElementById("main-header");
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerHeight - 24; // 24px of breathing room
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setIsOpen(false);
     }
   };
