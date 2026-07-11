@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { ShieldAlert, Award, Star, Heart, Flame, Compass, ChevronLeft, CheckCircle } from "lucide-react";
+import { ShieldAlert, Award, Star, Heart, Flame, Compass, ChevronLeft, CheckCircle, Clock, Send } from "lucide-react";
 
 interface PrepPoint {
   title: string;
@@ -37,6 +37,45 @@ const prepPoints: PrepPoint[] = [
 ];
 
 export default function MilitaryPrep() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    // Target is August 1st, 2026 at 12:00 PM (Typical military registration kickoff in Egypt)
+    const targetDate = new Date("2026-08-01T12:00:00");
+
+    const calculateTime = () => {
+      const now = new Date();
+      let difference = targetDate.getTime() - now.getTime();
+      
+      if (difference <= 0) {
+        // Fallback: dynamic countdown from now for demo purposes to keep it ticking actively
+        const fallbackTarget = new Date();
+        fallbackTarget.setDate(fallbackTarget.getDate() + 25);
+        fallbackTarget.setHours(12, 0, 0, 0);
+        difference = fallbackTarget.getTime() - now.getTime();
+      }
+
+      return {
+        days: Math.max(0, Math.floor(difference / (1000 * 60 * 60 * 24))),
+        hours: Math.max(0, Math.floor((difference / (1000 * 60 * 60)) % 24)),
+        minutes: Math.max(0, Math.floor((difference / 1000 / 60) % 60)),
+        seconds: Math.max(0, Math.floor((difference / 1000) % 60)),
+      };
+    };
+
+    setTimeLeft(calculateTime());
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTime());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="military-prep" className="py-20 bg-surface-base relative overflow-hidden scroll-mt-16">
       {/* Background Accent */}
@@ -86,6 +125,96 @@ export default function MilitaryPrep() {
               <p className="text-stone-300 text-sm font-sans leading-relaxed">
                 الاختبار الرياضي للكليات العسكرية ليس مجرد لياقة عشوائية، بل يحتاج لتكنيك ميكانيكي دقيق وقدرة تحمل رئوية عالية. نحن نعمل معك على تطوير العضلات المحددة لكل اختبار (كتف، ذراعين، أرجل)، مع محاكاة دورية للاختبار الحقيقي داخل نادي المنيا الرياضي لتفادي أي رهبة أو توتر في يوم الاختبار الفعلي.
               </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Countdown Timer Widget */}
+        <div className="max-w-4xl mx-auto mb-16 bg-[#131618] border border-secondary/30 rounded-2xl p-4 sm:p-8 relative overflow-hidden text-center shadow-xl">
+          {/* Subtle Background textures */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#dbe124_1px,transparent_1px)] [background-size:16px_16px]" />
+          <div className="absolute -top-12 -left-12 w-48 h-48 bg-secondary/5 rounded-full blur-3xl" />
+          
+          <div className="relative z-10 flex flex-col md:flex-row-reverse items-center justify-between gap-8 text-right" dir="rtl">
+            
+            {/* Timer Left: Label & Action */}
+            <div className="md:w-1/2 space-y-3 text-center md:text-right">
+              <div className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-3 py-1 rounded-full text-secondary text-xs font-bold font-mono">
+                <Clock className="w-3.5 h-3.5 animate-pulse" />
+                <span>التقديم وقبول الدفعات قريباً جداً</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-display font-black text-white leading-snug">
+                بداية التسجيل وحجز دفعة التأهيل العسكري 2026
+              </h3>
+              <p className="text-stone-400 text-xs sm:text-sm font-sans leading-relaxed">
+                انضم الآن لمجموعات التدريب المبكر لرفع لياقتك البدنية وضمان اجتياز قفزة الثقة والضاحية. الأماكن محدودة جداً لضمان جودة الإشراف والتدريب الفردي لكل طالب.
+              </p>
+              
+              {/* WhatsApp CTA */}
+              <div className="pt-2 flex justify-center md:justify-start">
+                <a
+                  href={`https://wa.me/201007555737?text=${encodeURIComponent(
+                    "السلام عليكم، أود الاستفسار والتسجيل المبكر في دورة التأهيل العسكري للكليات العسكرية والشرطة في VIP GYM."
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba56] text-black font-display font-black text-xs sm:text-sm py-2.5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-950/20 cursor-pointer"
+                >
+                  <Send className="w-4 h-4 text-black transform rotate-180" />
+                  <span>استفسر واحجز مكانك مبكراً عبر واتساب 💬</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Timer Right: Countdown Display */}
+            <div className="md:w-1/2 w-full flex flex-row-reverse justify-center gap-1.5 xs:gap-3 sm:gap-4 select-none">
+              
+              {/* Days */}
+              <div className="flex flex-col items-center bg-stone-900/90 border border-stone-850 rounded-xl p-2 sm:p-4 min-w-[58px] xs:min-w-[70px] sm:min-w-[85px] shadow-inner relative group">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-xl xs:text-2xl sm:text-3xl font-display font-black text-secondary tracking-tight xs:tracking-widest font-mono">
+                  {String(timeLeft.days).padStart(2, "0")}
+                </span>
+                <span className="text-[9px] sm:text-xs text-stone-500 font-sans mt-1 font-bold">يوم</span>
+              </div>
+
+              {/* Colon Separator */}
+              <div className="flex items-center justify-center text-secondary text-lg sm:text-2xl font-mono self-center pb-3 sm:pb-4 animate-pulse">:</div>
+
+              {/* Hours */}
+              <div className="flex flex-col items-center bg-stone-900/90 border border-stone-850 rounded-xl p-2 sm:p-4 min-w-[58px] xs:min-w-[70px] sm:min-w-[85px] shadow-inner relative group">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-xl xs:text-2xl sm:text-3xl font-display font-black text-white tracking-tight xs:tracking-widest font-mono">
+                  {String(timeLeft.hours).padStart(2, "0")}
+                </span>
+                <span className="text-[9px] sm:text-xs text-stone-500 font-sans mt-1 font-bold">ساعة</span>
+              </div>
+
+              {/* Colon Separator */}
+              <div className="flex items-center justify-center text-stone-700 text-lg sm:text-2xl font-mono self-center pb-3 sm:pb-4 animate-pulse">:</div>
+
+              {/* Minutes */}
+              <div className="flex flex-col items-center bg-stone-900/90 border border-stone-850 rounded-xl p-2 sm:p-4 min-w-[58px] xs:min-w-[70px] sm:min-w-[85px] shadow-inner relative group">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-xl xs:text-2xl sm:text-3xl font-display font-black text-white tracking-tight xs:tracking-widest font-mono">
+                  {String(timeLeft.minutes).padStart(2, "0")}
+                </span>
+                <span className="text-[9px] sm:text-xs text-stone-500 font-sans mt-1 font-bold">دقيقة</span>
+              </div>
+
+              {/* Colon Separator */}
+              <div className="flex items-center justify-center text-stone-700 text-lg sm:text-2xl font-mono self-center pb-3 sm:pb-4 animate-pulse">:</div>
+
+              {/* Seconds */}
+              <div className="flex flex-col items-center bg-stone-900/90 border border-stone-850 rounded-xl p-2 sm:p-4 min-w-[58px] xs:min-w-[70px] sm:min-w-[85px] shadow-inner relative group">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-xl xs:text-2xl sm:text-3xl font-display font-black text-stone-400 tracking-tight xs:tracking-widest font-mono">
+                  {String(timeLeft.seconds).padStart(2, "0")}
+                </span>
+                <span className="text-[9px] sm:text-xs text-stone-500 font-sans mt-1 font-bold">ثانية</span>
+              </div>
+
             </div>
 
           </div>

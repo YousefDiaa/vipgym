@@ -114,7 +114,7 @@ export default function App() {
     },
     {
       id: "services_reasons",
-      title: "الخدمات و الأسباب",
+      title: "الخدمات و الأسبا",
       description: "ما الذي يجعل VIP GYM الاختيار الأول؟ أحدث الأجهزة الأمريكية CYBEX، الإطلالة البانورامية، والخدمات المميزة.",
       icon: Sparkles,
       color: "from-purple-500/10 to-indigo-500/5 hover:border-purple-500/40 border-stone-800/80",
