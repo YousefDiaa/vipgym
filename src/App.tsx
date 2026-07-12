@@ -501,7 +501,7 @@ export default function App() {
                 className="flex items-center gap-1.5 bg-green-600/10 hover:bg-green-600/20 border border-green-500/30 text-green-400 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all font-sans"
               >
                 <MessageSquare className="w-4 h-4" />
-                واتساب الكابتن
+                للاشكاوى والاقتراحات وتساب
               </a>
               <a
                 href="tel:01007555737"
