@@ -311,7 +311,7 @@ export default function ScheduleSection() {
               {/* Outside Hall Timing */}
               <div className="md:col-span-4 bg-[#0d0f10] border border-stone-850 p-3 rounded-xl flex items-center justify-between text-right" dir="rtl">
                 <div className="text-right">
-                  <span className="text-stone-400 text-[10px] block font-display">القاعة الخارجية (كورنيش النيل)</span>
+                  <span className="text-stone-400 text-[10px] block font-display">القاعه الخارجيه (Open air)</span>
                   <span className={`font-sans text-xs sm:text-sm font-bold mt-0.5 block ${todaySchedule.outdoor.includes("مغلقة") ? "text-red-400/90" : "text-white"}`} dir="rtl">{todaySchedule.outdoor}</span>
                 </div>
                 <span className="text-[10px] text-stone-500 font-mono block text-left shrink-0" dir="ltr">OUTDOOR NILE</span>
@@ -380,7 +380,7 @@ export default function ScheduleSection() {
                       <div className="flex items-center justify-between" dir="rtl">
                         <div className="flex items-center gap-1.5 justify-start">
                           <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0" />
-                          <span className="text-stone-300 text-[10px] font-display font-extrabold text-right">القاعة الخارجية (المطلة على النيل)</span>
+                          <span className="text-stone-300 text-[10px] font-display font-extrabold text-right">القاعه الخارجيه (Open air)</span>
                         </div>
                         <span className="text-[9px] text-stone-500 font-mono text-left" dir="ltr">{item.outdoorTimeEn}</span>
                       </div>
@@ -401,7 +401,7 @@ export default function ScheduleSection() {
                 <tr className="bg-stone-900/80 text-stone-400 border-b border-stone-800">
                   <th className="py-3 px-4 font-display font-bold w-[120px] text-right">اليوم</th>
                   <th className="py-3 px-4 font-display font-bold text-right">القاعة الداخلية (المغلقة والمكيفة)</th>
-                  <th className="py-3 px-4 font-display font-bold text-right w-[220px] sm:w-[280px]">القاعة الخارجية (مطلة على النيل)</th>
+                  <th className="py-3 px-4 font-display font-bold text-right w-[220px] sm:w-[280px]">القاعه الخارجيه (Open air)</th>
                   <th className="py-3 px-4 font-display font-bold text-center w-[100px]">الحالة</th>
                 </tr>
               </thead>

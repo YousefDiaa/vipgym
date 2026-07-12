@@ -35,7 +35,7 @@ export default function HallsSection() {
                   : "text-stone-400 hover:text-stone-200"
               }`}
             >
-              القاعة الخارجية (المفتوحة على النيل)
+              القاعه الخارجيه (Open air)
             </button>
             <button
               onClick={() => setActiveHall("indoor")}
@@ -141,7 +141,7 @@ export default function HallsSection() {
                 <div>
                   <span className="text-secondary text-xs font-bold font-mono tracking-wider">OPEN AIR • PURE NILE BREEZE</span>
                   <h3 className="text-2xl sm:text-3xl font-display font-black text-white mt-1">
-                    القاعة الخارجية (صالة الهواء الطلق وإطلالة النيل البانورامية)
+                    القاعه الخارجيه (Open air) - صالة الهواء الطلق وإطلالة النيل البانورامية
                   </h3>
                   <p className="text-stone-300 text-sm sm:text-base leading-relaxed mt-3 font-sans">
                     تجربة تمرينية منقطعة النظير ومحفزة للأبطال! قاعة خارجية مفتوحة تقع مباشرة على النيل العظيم بنادي المنيا الرياضي. يمتزج فيها الأكسجين الصافي القادم من النهر مع التمرين الثقيل، لتستمتع بأجمل غروب وهواء طبيعي منعش طوال اليوم.
